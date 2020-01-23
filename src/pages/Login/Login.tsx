@@ -1,32 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button, SafeAreaView} from 'react-native';
 
-export const Login: React.FC = () => {
-    return (
-        <View style={loginStyles.container}>
-            <Text style={loginStyles.companyName}>Company name</Text>
-            <TextInput
-                style={loginStyles.textInput}
-                placeholder={"Username"}
-                placeholderTextColor={"#fff"}
-                value={"test"}
-            />
-            <TextInput
-                style={loginStyles.textInput}
-                placeholder={"Password"}
-                placeholderTextColor={"#fff"}
-                secureTextEntry={true}
-                value={"test"}
-            />
-            <View style={loginStyles.btnContainer}>
-                <Button
-                    title={"Login"}
-                    onPress={()=>{console.log(1)}}
-                />
-            </View>
-        </View>
-    )
-};
+export class Login extends React.Component<any> {
+    render(){
+        return (
+            // <SafeAreaView>
+                <SafeAreaView style={loginStyles.container}>
+                    <Text style={loginStyles.companyName}>Company name</Text>
+                    <TextInput
+                        style={loginStyles.textInput}
+                        placeholder={"Username"}
+                        placeholderTextColor={"#fff"}
+                    />
+                    <TextInput
+                        style={loginStyles.textInput}
+                        placeholder={"Password"}
+                        placeholderTextColor={"#fff"}
+                        secureTextEntry={true}
+                    />
+                    <View style={loginStyles.btnContainer}>
+                        <Button
+                            title={"Login"}
+                            onPress={() => this.props.navigation.navigate("Page1")}
+                        />
+                    </View>
+                </SafeAreaView>
+            // </SafeAreaView>
+        )
+    }
+}
 
 const loginStyles = StyleSheet.create({
     container: {
