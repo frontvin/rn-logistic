@@ -6,6 +6,8 @@ import {Login} from "./src/pages/Login/Login";
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import {createDrawerNavigator} from "react-navigation-drawer";
+import {SideMenu} from "./src/components/SideMenu";
 
 const AppStack = createStackNavigator({
         Login: Login,
@@ -16,7 +18,17 @@ const AppStack = createStackNavigator({
         headerMode: "none"
     }
 );
-const AppContainer = createAppContainer(AppStack);
+
+const Drawer = createDrawerNavigator({
+        Main: {
+            screen: AppStack,
+        }
+    },{
+        contentComponent: SideMenu,
+    }
+);
+
+const AppContainer = createAppContainer(Drawer);
 
 const App = () => {
   return (
