@@ -3,14 +3,22 @@ import {View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform} from 
 import {Search} from "../../components/Search";
 import {Header} from "react-native-elements";
 
-export class Page1 extends React.Component<any, any> {
-    render(){
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
+import { SideMenu } from '../../components/SideMenu';
+
+const Drawer = createDrawerNavigator({
+    contentComponent: SideMenu
+});
+
+export const Page1: React.FC = ({ navigation }) => {
+
         return (
             <View style={styles.pageWrapper}>
                 <SafeAreaView>
                 <Header
                     placement="left"
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
+                    leftComponent={{ icon: 'menu', color: '#fff', onPress: () => navigation.toggleDrawer() }}
                     centerComponent={<Search />}
                     containerStyle={{
                         backgroundColor: '#3D6DCC',
@@ -72,7 +80,6 @@ export class Page1 extends React.Component<any, any> {
                 </ScrollView>
             </View>
         )
-    }
 }
 
 const styles = StyleSheet.create({
