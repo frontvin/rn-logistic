@@ -1,12 +1,12 @@
 import React from 'react';
-import {Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Button, CheckBox, Icon, Slider} from "react-native-elements";
+import {Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View} from 'react-native';
+import {Button, CheckBox, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
 
 export const SideMenu: React.FC<any> = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
-            <SafeAreaView>
+            <SafeAreaView style={{paddingBottom: 50}}>
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Settings</Text>
                     <Button
@@ -21,24 +21,30 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                     />
                 </View>
                 <Divider style={styles.divider} />
+
                 <View >
                     <Text style={styles.subTitle}>Units & Measurements</Text>
                     <View style={styles.checkboxContainer}>
                         <CheckBox
                             title={"metric"}
-                            containerStyle={{backgroundColor: 'transparent', borderColor: "transparent"}}
+                            containerStyle={styles.checkBox}
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
                             checked={true}
                             titleProps={{style:{color: "#fff"}}}
                         />
                         <CheckBox
                             title={"imperial"}
-                            containerStyle={{backgroundColor: 'transparent', borderColor: "transparent"}}
+                            containerStyle={styles.checkBox}
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
                             checked={false}
                             titleProps={{style:{color: "#fff"}}}
                         />
                     </View>
                 </View>
                 <Divider style={styles.divider} />
+
                 <View>
                     <Text style={styles.subTitle}>Language</Text>
                     <Picker
@@ -48,22 +54,52 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                         onValueChange={(itemValue, itemIndex) =>
                             itemValue = "dfsfdsf"
                         }>
-                        <Picker.Item label="Java" value="java" />
-                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="English" value="english" />
+                        <Picker.Item label="Russian" value="russian" />
                     </Picker>
                 </View>
+                <Divider style={styles.divider} />
 
+                <View>
+                    <Text style={styles.subTitle}>Caching for offline-use</Text>
+                    <View style={styles.cacheContainer}>
+                        <View style={{flexDirection: "row", alignItems: "center"}}>
+                            <Switch
+                                value={true}
+                                thumbColor={"#56B7E9"}
+                                trackColor={{false:"#000",true: "#fff"}}
+                            />
+                            <Text style={{color: "#fff"}}>enabled</Text>
+                        </View>
+                        <Button
+                            title={"Clear cache"}
+                            type={"outline"}
+                            buttonStyle={styles.cacheBtnContainer}
+                            titleStyle={styles.cacheBtnTitle}
+                        />
+                    </View>
+                </View>
+                <Divider style={styles.divider} />
 
-                <Slider
-                    value={100}
+                <View>
+                    <Text style={styles.subTitle}>Auto-save my filter settings</Text>
+                    <View style={{flexDirection: "row", alignItems: "center", justifyContent: "flex-start", padding: 15}}>
+                        <Switch
+                            value={true}
+                            thumbColor={"#56B7E9"}
+                            trackColor={{false:"#000",true: "#fff"}}
+                        />
+                        <Text style={{color: "#fff"}}>enabled</Text>
+                    </View>
+                </View>
+                <Divider style={styles.divider} />
 
-                />
                 <View>
                     <Button
                         title={"Logout"}
                         onPress={() => navigation.navigate("Login")}
                         type="outline"
-                        style={styles.logOutBtn}
+                        buttonStyle={styles.logOutBtn}
                     />
                 </View>
             </SafeAreaView>
@@ -93,6 +129,10 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingTop: 15
     },
+    checkBox: {
+        backgroundColor: 'transparent',
+        borderColor: "transparent"
+    },
     divider: {
         backgroundColor: 'grey',
         marginLeft: 10,
@@ -106,8 +146,24 @@ const styles = StyleSheet.create({
         color: "#fff",
         width: "100%"
     },
+    cacheContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: 15
+    },
+    cacheBtnContainer: {
+        // color: "#fff",
+        borderColor: "#fff"
+    },
+    cacheBtnTitle: {
+        color: "#fff",
+        fontSize: 10,
+        paddingLeft: 10,
+        paddingRight: 10
+    },
     logOutBtn: {
-        width: 70,
-        marginLeft: 15
+        width: 100,
+        alignSelf: "center",
+        marginTop: 20
     }
 });

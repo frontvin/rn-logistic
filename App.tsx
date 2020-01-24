@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
-import {Page1} from "./src/pages/Page1/Page1";
+import { Page1 } from "./src/pages/Page1/Page1";
 import {Login} from "./src/pages/Login/Login";
 
 import { createAppContainer } from 'react-navigation';
