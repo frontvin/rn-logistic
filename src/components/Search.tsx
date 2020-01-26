@@ -16,7 +16,6 @@ export const Search: React.FC = () => {
                 setSearch({search});
             }}
             value={search}
-
         />
     )
 };

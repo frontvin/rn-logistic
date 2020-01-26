@@ -1,7 +1,8 @@
 import React from "react";
-import {View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform} from "react-native";
-import {Search} from "../../components/Search";
-import {Header} from "react-native-elements";
+import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform } from "react-native";
+import { Search } from "../../components/Search";
+import { Header } from "react-native-elements";
+import { Headline, Paragraph} from "react-native-paper";
 
 export const Page1: React.FC<any> = ( { navigation }) => {
 
@@ -21,58 +22,82 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                     }}
                 />
                 </SafeAreaView>
+
                 <ScrollView>
                     <View style={styles.container}>
-                        <Text style={styles.heading}>Page 1 heading</Text>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <View style={styles.imgContainer}>
-                            <Image
-                                style={{ width: 150, height: 150 }}
-                                source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                            </Image>
+                        <View style={styles.headerContainer}>
+                            <Text style={styles.heading}>Choose a KN facility for detailed information</Text>
+                            <Text style={styles.headerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
                         </View>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <View style={styles.imgContainer}>
-                            <Image
-                                style={{ width: 150, height: 150 }}
-                                source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                            </Image>
-                        </View>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                        <View style={styles.imgContainer}>
-                            <Image
-                                style={{ width: 150, height: 150 }}
-                                source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                            </Image>
-                        </View>
-                        <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </Text>
-                    </View>
 
-                    {/*<Image source={}/>*/}
+                        <View style={styles.contentContainer}>
+                            <View style={styles.leftContainer}>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <View style={styles.imgContainer}>
+                                    <Image
+                                        style={{ width: 150, height: 150 }}
+                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                    </Image>
+                                </View>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <View style={styles.imgContainer}>
+                                    <Image
+                                        style={{ width: 150, height: 150 }}
+                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                    </Image>
+                                </View>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                                <View style={styles.imgContainer}>
+                                    <Image
+                                        style={{ width: 150, height: 150 }}
+                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                    </Image>
+                                </View>
+                                <Text style={styles.text}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </View>
+
+                            <View style={styles.rightContainer}>
+                                <View>
+                                    <Headline style={styles.underline}>Favourites</Headline>
+                                    <Paragraph style={styles.underline}>Item 1</Paragraph>
+                                    <Paragraph style={styles.underline}>Item 2</Paragraph>
+                                    <Paragraph style={styles.underline}>Item 3</Paragraph>
+                                </View>
+                                <View>
+                                    <Headline style={styles.underline}>Last Used</Headline>
+                                    <Paragraph style={styles.underline}>Item 1</Paragraph>
+                                    <Paragraph style={styles.underline}>Item 2</Paragraph>
+                                    <Paragraph style={styles.underline}>Item 3</Paragraph>
+                                </View>
+                            </View>
+
+                        </View>
+
+                    </View>
                 </ScrollView>
             </View>
         )
-}
+};
 
 const styles = StyleSheet.create({
     pageWrapper: {
@@ -83,22 +108,53 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         backgroundColor: "#072955",
     },
+    contentContainer: {
+      flexDirection: "row"
+    },
+    leftContainer: {
+        width: "75%",
+        paddingRight: 40
+    },
+    rightContainer: {
+        width: "25%",
+
+    },
     imgContainer:{
         paddingTop: 10,
         paddingBottom: 10,
         justifyContent: 'center',
         alignItems: 'center',
     },
+    headerContainer: {
+        width: "60%",
+        flexDirection: "column",
+        alignSelf: "center",
+        paddingBottom: 35
+    },
     heading: {
        fontSize: 20,
-       textTransform: "uppercase",
+       textAlign: "center",
        fontStyle: "italic",
        color: "#fff",
        paddingTop: 15,
        paddingBottom: 15
+    },
+    underline: {
+       color: "#fff",
+       borderBottomColor: '#fff',
+       borderTopColor: "transparent",
+       borderLeftColor: "transparent",
+       borderRightColor: "transparent",
+       borderWidth: 1,
+       paddingBottom: 5
+    },
+    headerText: {
+       color: "#586F8C",
+       textAlign: "center"
     },
     text: {
         color: "#fff",
         fontSize: 16,
    }
 });
+
