@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View} from 'react-native';
 import {Button, CheckBox, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
+import { RadioButton } from 'react-native-paper';
 
 export const SideMenu: React.FC<any> = ({navigation}) => {
+    const [value, setValue] = useState("metric")
+
     return (
         <ScrollView style={styles.container}>
             <SafeAreaView style={{paddingBottom: 50}}>
@@ -22,27 +25,44 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                 </View>
                 <Divider style={styles.divider} />
 
-                <View >
-                    <Text style={styles.subTitle}>Units & Measurements</Text>
-                    <View style={styles.checkboxContainer}>
-                        <CheckBox
-                            title={"metric"}
-                            containerStyle={styles.checkBox}
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            checked={true}
-                            titleProps={{style:{color: "#fff"}}}
-                        />
-                        <CheckBox
-                            title={"imperial"}
-                            containerStyle={styles.checkBox}
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            checked={false}
-                            titleProps={{style:{color: "#fff"}}}
-                        />
-                    </View>
+                {/*<View >*/}
+                {/*    <Text style={styles.subTitle}>Units & Measurements</Text>*/}
+                {/*    <View style={styles.checkboxContainer}>*/}
+                {/*        <CheckBox*/}
+                {/*            title={"metric"}*/}
+                {/*            containerStyle={styles.checkBox}*/}
+                {/*            checkedIcon='dot-circle-o'*/}
+                {/*            uncheckedIcon='circle-o'*/}
+                {/*            checked={true}*/}
+                {/*            titleProps={{style:{color: "#fff"}}}*/}
+                {/*        />*/}
+                {/*        <CheckBox*/}
+                {/*            title={"imperial"}*/}
+                {/*            containerStyle={styles.checkBox}*/}
+                {/*            checkedIcon='dot-circle-o'*/}
+                {/*            uncheckedIcon='circle-o'*/}
+                {/*            checked={false}*/}
+                {/*            titleProps={{style:{color: "#fff"}}}*/}
+                {/*        />*/}
+                {/*    </View>*/}
+                {/*</View>*/}
+                <View style={{flexDirection: "row", alignItems: "center", paddingTop: 5, paddingBottom: 5}}>
+                    <RadioButton.Group
+                        onValueChange={value => setValue(value)}
+                        value={value}
+                    >
+                        <View style={styles.radioBtnContainer}>
+                            <RadioButton value="metric" color={"#56B7E9"} uncheckedColor={"#fff"}/>
+                            <Text style={{color: "#fff"}}>metric</Text>
+                        </View>
+                        <View style={styles.radioBtnContainer}>
+                            <RadioButton value="imperial" color={"#56B7E9"} uncheckedColor={"#fff"}/>
+                            <Text style={{color: "#fff"}}>imperial</Text>
+                        </View>
+                    </RadioButton.Group>
                 </View>
+
+
                 <Divider style={styles.divider} />
 
                 <View>
@@ -138,8 +158,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10
     },
-    checkboxContainer: {
-        flexDirection: "row"
+    radioBtnContainer: {
+        flexDirection: "row",
+        alignItems: "center"
     },
     picker: {
         height: 50,
@@ -152,7 +173,6 @@ const styles = StyleSheet.create({
         padding: 15
     },
     cacheBtnContainer: {
-        // color: "#fff",
         borderColor: "#fff"
     },
     cacheBtnTitle: {

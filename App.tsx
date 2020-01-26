@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Platform } from 'react-native';
 
 import { Page1 } from "./src/pages/Page1/Page1";
-import {Login} from "./src/pages/Login/Login";
+import { Login } from "./src/pages/Login/Login";
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import {createDrawerNavigator} from "react-navigation-drawer";
-import {SideMenu} from "./src/components/SideMenu";
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { SideMenu } from "./src/components/SideMenu";
 
 const AppStack = createStackNavigator({
         Login: Login,
