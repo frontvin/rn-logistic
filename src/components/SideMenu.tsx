@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
-import {Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View} from 'react-native';
+import {Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button, CheckBox, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
-import { RadioButton } from 'react-native-paper';
+import {RadioButton, Switch} from 'react-native-paper';
 
 export const SideMenu: React.FC<any> = ({navigation}) => {
-    const [value, setValue] = useState("metric")
+    const [value, setValue] = useState("metric");
+    const [language, setLanguage] = useState("English");
+    const [cacheSwitchOn, setCacheSwitchOn] = useState(false);
+    const [filterOn, setFilterOn] = useState(false);
 
     return (
         <ScrollView style={styles.container}>
@@ -68,11 +71,11 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                 <View>
                     <Text style={styles.subTitle}>Language</Text>
                     <Picker
-                        selectedValue={"sdf"}
+                        selectedValue={language}
                         style={styles.picker}
-                        mode={"dropdown"}
+                        // mode={"dropdown"}
                         onValueChange={(itemValue, itemIndex) =>
-                            itemValue = "dfsfdsf"
+                            setLanguage(itemValue)
                         }>
                         <Picker.Item label="English" value="english" />
                         <Picker.Item label="Russian" value="russian" />
@@ -85,10 +88,19 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                     <View style={styles.cacheContainer}>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <Switch
-                                value={true}
-                                thumbColor={"#56B7E9"}
-                                trackColor={{false:"#000",true: "#fff"}}
-                            />
+                                value={cacheSwitchOn}
+                                onValueChange={() => {
+                                    setCacheSwitchOn(!cacheSwitchOn)
+                                }}
+                                color={"#56B7E9"}
+                            >
+
+                            </Switch>
+                            {/*<Switch*/}
+                            {/*    value={true}*/}
+                            {/*    thumbColor={"#56B7E9"}*/}
+                            {/*    trackColor={{false:"#000",true: "#fff"}}*/}
+                            {/*/>*/}
                             <Text style={{color: "#fff"}}>enabled</Text>
                         </View>
                         <Button
@@ -105,10 +117,17 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                     <Text style={styles.subTitle}>Auto-save my filter settings</Text>
                     <View style={{flexDirection: "row", alignItems: "center", justifyContent: "flex-start", padding: 15}}>
                         <Switch
-                            value={true}
-                            thumbColor={"#56B7E9"}
-                            trackColor={{false:"#000",true: "#fff"}}
+                            value={filterOn}
+                            onValueChange={() => {
+                                setFilterOn(!filterOn)
+                            }}
+                            color={"#56B7E9"}
                         />
+                        {/*<Switch*/}
+                        {/*    value={true}*/}
+                        {/*    thumbColor={"#56B7E9"}*/}
+                        {/*    trackColor={{false:"#000",true: "#fff"}}*/}
+                        {/*/>*/}
                         <Text style={{color: "#fff"}}>enabled</Text>
                     </View>
                 </View>
