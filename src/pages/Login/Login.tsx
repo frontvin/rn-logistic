@@ -4,7 +4,6 @@ import {StyleSheet, Text, View, TextInput, Button, SafeAreaView} from 'react-nat
 export class Login extends React.Component<any> {
     render(){
         return (
-            // <SafeAreaView>
                 <SafeAreaView style={loginStyles.container}>
                     <Text style={loginStyles.companyName}>Company name</Text>
                     <TextInput
@@ -25,7 +24,6 @@ export class Login extends React.Component<any> {
                         />
                     </View>
                 </SafeAreaView>
-            // </SafeAreaView>
         )
     }
 }

@@ -1,98 +1,162 @@
-import React from "react";
-import {View, Text, Image, StyleSheet, ScrollView} from "react-native";
+import React, {useState} from "react";
+import {View, Text, Image, StyleSheet, ScrollView, Platform, SafeAreaView, Dimensions} from "react-native";
 import {Search} from "../../components/Search";
-import {Header} from "react-native-elements";
+import {Divider, Header} from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Paragraph, List, Title, Avatar} from "react-native-paper";
+import {Constants} from "expo/build/globals.web";
+import { SliderBox } from 'react-native-image-slider-box';
 
 export const Page2: React.FC = () => {
-  return (
-      <View>
-          <Header
-              placement="left"
-              leftComponent={{ icon: 'menu', color: '#fff' }}
-              centerComponent={<Search />}
-              containerStyle={{
-                  backgroundColor: '#3D6DCC',
-                  justifyContent: 'space-around',
-                  paddingTop: 0,
-                  margin:0,
-                  height:60
-              }}
-          />
-          <ScrollView>
-              <View style={styles.container}>
-                  <Text style={styles.heading}>Page 1 heading</Text>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <View style={styles.imgContainer}>
-                      <Image
-                          style={{ width: 150, height: 150 }}
-                          source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                      </Image>
-                  </View>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <View style={styles.imgContainer}>
-                      <Image
-                          style={{ width: 150, height: 150 }}
-                          source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                      </Image>
-                  </View>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <View style={styles.imgContainer}>
-                      <Image
-                          style={{ width: 150, height: 150 }}
-                          source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                      </Image>
-                  </View>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                  <Text style={styles.text}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-              </View>
+  const images = [
+      "https://source.unsplash.com/1024x768/?nature",
+      "https://source.unsplash.com/1024x768/?water",
+      "https://source.unsplash.com/1024x768/?girl",
+      "https://source.unsplash.com/1024x768/?tree"
+  ];
 
-              {/*<Image source={}/>*/}
-          </ScrollView>
-      </View>
+  return (
+      <SafeAreaView style={styles.container} >
+          <View>
+              <Header
+                  placement="left"
+                  leftComponent={{ icon: 'menu', color: '#fff' }}
+                  centerComponent={<Search />}
+                  containerStyle={{
+                      backgroundColor: '#3D6DCC',
+                      justifyContent: 'space-around',
+                      paddingTop: 0,
+                      margin:0,
+                      height:60
+                  }}
+              />
+              <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight - 50}}>
+                  <View style={{flexDirection: "column"}}>
+                      <View style={{flexDirection: "row"}}>
+                          <View style={{padding: 10, width: "60%",}}>
+                              <View>
+                                  <View style={{flexDirection: 'row', justifyContent: "space-between", paddingBottom: 20}}>
+                                      <View>
+                                          <Text style={{fontSize: 16, fontWeight: "bold"}}>KN Airfreight Center</Text>
+                                          <Text style={{fontSize: 16, color: "#3D6DCC", fontWeight: "bold"}}>Munich (MUC)</Text>
+                                      </View>
+                                      <View style={{alignSelf: "center"}}>
+                                          <Icon name={"star"} color={"#3D6DCC"} size={24}></Icon>
+                                      </View>
+                                  </View>
+
+                                  <View style={{paddingBottom: 15}}>
+                                      <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+                                  </View>
+                              </View>
+
+                              <View style={{paddingBottom: 15}}>
+                                  <Text style={{fontWeight: "bold", paddingBottom: 5}}>Unique Selling Points</Text>
+                                  <View style={{backgroundColor: "#F9F9F7"}}>
+                                      <List.Item
+                                          title="First Item"
+                                          description="Item description"
+                                          left={props => <List.Icon {...props} icon="check" color={"#3D6DCC"}/>}
+                                      />
+                                      <List.Item
+                                          title="Second Item"
+                                          description="Item description"
+                                          left={props => <List.Icon {...props} icon="check" color={"#3D6DCC"}/>}
+                                      />
+                                      <List.Item
+                                          title="Third Item"
+                                          description="Item description"
+                                          left={props => <List.Icon {...props} icon="check" color={"#3D6DCC"}/>}
+                                      />
+                                  </View>
+                              </View>
+
+                              <View style={{paddingBottom: 15}}>
+                                  <Text style={{fontWeight: "bold", paddingBottom: 5}}>Services</Text>
+                                  <View style={{backgroundColor: "#F9F9F7"}}>
+                                      <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+                                  </View>
+                              </View>
+
+                              <View style={{paddingBottom: 15}}>
+                                  <Text style={{fontWeight: "bold", paddingBottom: 5}}>Business Hours</Text>
+                                  <View style={{backgroundColor: "#F9F9F7"}}>
+                                      <Paragraph>Mo - Fr: 8.00 - 17:00h</Paragraph>
+                                  </View>
+                              </View>
+                          </View>
+
+                          <View style={{width: "40%", backgroundColor: "#F5F5EF"}}>
+                              <SliderBox
+                                  images={images}
+                                  sliderBoxHeight={200}
+                                  dotColor="#FFEE58"
+                                  nactiveDotColor="#90A4AE"
+                                  paginationBoxVerticalPadding={20}
+                                  autoplay
+                                  circleLoop
+                              />
+
+                              <View
+                                  style={{
+                                      flexDirection: "row",
+                                      alignItems: "center",
+                                      justifyContent: "space-around",
+                                      paddingTop: 10,
+                                      paddingBottom: 10,
+                                      margin: 10,
+                                      borderBottomColor: "#000",
+                                      borderTopWidth: 1,
+                                      borderBottomWidth: 1
+
+                                  }}>
+                                  <Paragraph>Suedalee 8, 85452 Munich, Germany</Paragraph>
+                                  <Icon name={"globe"} color={"#3D6DCC"} size={24}></Icon>
+                              </View>
+
+                              <View style={{paddingHorizontal: 10}}>
+                                  <View style={{flexDirection: "row", paddingBottom: 20}}>
+                                      <View>
+                                          <Avatar.Image size={90} source={require('../../../assets/47.jpg')} />
+                                      </View>
+                                      <View style={{paddingHorizontal: 10}}>
+                                          <Text>John Smith</Text>
+                                          <Text>Head of Operation</Text>
+                                          <Text>+38 89 - 1545 02 48</Text>
+                                          <Text>johnsmith@gmail.com</Text>
+                                      </View>
+                                  </View>
+                                  <View style={{flexDirection: "row"}}>
+                                      <View>
+                                          <Avatar.Image size={90} source={require('../../../assets/47.jpg')} />
+                                      </View>
+                                      <View style={{paddingHorizontal: 10}}>
+                                          <Text>John Smith</Text>
+                                          <Text>Head of Operation</Text>
+                                          <Text>+38 89 - 1545 02 48</Text>
+                                          <Text>johnsmith@gmail.com</Text>
+                                      </View>
+                                  </View>
+                              </View>
+
+                          </View>
+                      </View>
+
+                      <View>
+                           {/*Map will be here*/}
+                      </View>
+                  </View>
+
+              </ScrollView>
+          </View>
+      </SafeAreaView>
   )
 };
 
 const styles = StyleSheet.create({
     container: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        backgroundColor: "#072955",
+        flex: 1,
+        marginTop: Constants.statusBarHeight,
     },
-    imgContainer:{
-        paddingTop: 10,
-        paddingBottom: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    heading: {
-       fontSize: 20,
-       textTransform: "uppercase",
-       fontStyle: "italic",
-       color: "#fff",
-       paddingTop: 15,
-       paddingBottom: 15
-    },
-    text: {
-        color: "#fff",
-        fontSize: 16,
-   }
+
 });

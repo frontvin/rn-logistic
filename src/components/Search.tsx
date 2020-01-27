@@ -9,6 +9,7 @@ export const Search: React.FC = () => {
         <SearchBar
             round
             lightTheme
+            showCancel={true}
             containerStyle={searchStyles.containerStyle}
             placeholderTextColor={'#000'}
             placeholder="Type Here..."
