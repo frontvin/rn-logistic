@@ -3,6 +3,7 @@ import { Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } fr
 import { Button, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
 import { RadioButton, Switch } from 'react-native-paper';
+import RNPickerSelect from 'react-native-picker-select';
 
 export const SideMenu: React.FC<any> = ({navigation}) => {
     const [value, setValue] = useState("metric");
@@ -13,113 +14,134 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
             <SafeAreaView style={styles.sideMenuContainer}>
-                <View>
-                    <View style={styles.header}>
-                        <Text style={styles.headerTitle}>Settings</Text>
-                        <Button
-                            onPress={() => navigation.closeDrawer()}
-                            icon={
-                                <Icon
-                                    name={"close"}
-                                    size={15}
-                                    color="white"
-                                />
-                            }
-                        />
-                    </View>
-                    <Divider style={styles.divider} />
-
-                    <View style={{flexDirection: "row", alignItems: "center", paddingTop: 5, paddingBottom: 5}}>
-                        <RadioButton.Group
-                            onValueChange={value => setValue(value)}
-                            value={value}
-                        >
-                            <View style={styles.radioBtnContainer}>
-                                <RadioButton value="metric" color={"#56B7E9"} uncheckedColor={"#fff"}/>
-                                <Text style={{color: "#fff"}}>metric</Text>
-                            </View>
-                            <View style={styles.radioBtnContainer}>
-                                <RadioButton value="imperial" color={"#56B7E9"} uncheckedColor={"#fff"}/>
-                                <Text style={{color: "#fff"}}>imperial</Text>
-                            </View>
-                        </RadioButton.Group>
-                    </View>
-
-
-                    <Divider style={styles.divider} />
-
+                <View style={{flexDirection: "column", justifyContent: "space-between"}}>
                     <View>
-                        <Text style={styles.subTitle}>Language</Text>
-                        <Picker
-                            selectedValue={language}
-                            style={styles.picker}
-                            // mode={"dropdown"}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setLanguage(itemValue)
-                            }>
-                            <Picker.Item label="English" value="english" />
-                            <Picker.Item label="Russian" value="russian" />
-                        </Picker>
-                    </View>
-                    <Divider style={styles.divider} />
-
-                    <View>
-                        <Text style={styles.subTitle}>Caching for offline-use</Text>
-                        <View style={styles.cacheContainer}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Switch
-                                    value={cacheSwitchOn}
-                                    onValueChange={() => {
-                                        setCacheSwitchOn(!cacheSwitchOn)
-                                    }}
-                                    color={"#56B7E9"}
-                                >
-
-                                </Switch>
-                                <Text style={{color: "#fff"}}>
-                                    {cacheSwitchOn ? "enabled" : "disabled"}
-                                </Text>
-                            </View>
-
+                        <View style={styles.header}>
+                            <Text style={styles.headerTitle}>Settings</Text>
                             <Button
-                                title={"Clear cache"}
-                                type={"outline"}
-                                buttonStyle={styles.cacheBtnContainer}
-                                titleStyle={styles.cacheBtnTitle}
+                                onPress={() => navigation.closeDrawer()}
+                                icon={
+                                    <Icon
+                                        name={"close"}
+                                        size={23}
+                                        color="white"
+                                    />
+                                }
                             />
                         </View>
-                    </View>
-                    <Divider style={styles.divider} />
+                        <Divider style={styles.divider} />
 
-                    <View>
-                        <Text style={styles.subTitle}>Auto-save my filter settings</Text>
-                        <View style={styles.cacheContainer}>
-                            <View style={{flexDirection: "row", alignItems: "center", }}>
-                                <Switch
-                                    value={filterOn}
-                                    onValueChange={() => {
-                                        setFilterOn(!filterOn)
-                                    }}
-                                    color={"#56B7E9"}
+                        <View>
+                            <Text style={styles.subTitle}>Units & Measurement</Text>
+                            <View style={{flexDirection: "row", alignItems: "center", paddingTop: 5, paddingBottom: 5}}>
+                                <RadioButton.Group
+                                    onValueChange={value => setValue(value)}
+                                    value={value}
+                                >
+                                    <View style={styles.radioBtnContainer}>
+                                        <RadioButton value="metric" color={"#56B7E9"} uncheckedColor={"#fff"}/>
+                                        <Text style={{color: "#fff"}}>metric</Text>
+                                    </View>
+                                    <View style={styles.radioBtnContainer}>
+                                        <RadioButton value="imperial" color={"#56B7E9"} uncheckedColor={"#fff"}/>
+                                        <Text style={{color: "#fff"}}>imperial</Text>
+                                    </View>
+                                </RadioButton.Group>
+                            </View>
+
+                        </View>
+
+
+                        <Divider style={styles.divider} />
+
+                        <View>
+                            <Text style={styles.subTitle}>Language</Text>
+                            {
+                                Platform.OS === 'ios' ?
+                                    <RNPickerSelect
+                                        onValueChange={(itemValue, itemIndex)  =>
+                                            setLanguage(itemValue)}
+                                        items={[
+                                            { label: 'English', value: 'english' },
+                                            { label: 'Russian', value: 'russian' },
+                                        ]}
+                                    />
+                                    : <Picker
+                                        selectedValue={language}
+                                        itemStyle={styles.picker}
+                                        style={styles.picker}
+                                        mode={"dropdown"}
+                                        onValueChange={(itemValue, itemIndex) =>
+                                            setLanguage(itemValue)
+                                        }
+                                    >
+                                        <Picker.Item label="English" value="english" />
+                                        <Picker.Item label="Russian" value="russian" />
+                                    </Picker>
+                            }
+
+                        </View>
+                        <Divider style={styles.divider} />
+
+                        <View>
+                            <Text style={styles.subTitle}>Caching for offline-use</Text>
+                            <View style={styles.cacheContainer}>
+                                <View style={{flexDirection: "row", alignItems: "center"}}>
+                                    <Switch
+                                        value={cacheSwitchOn}
+                                        onValueChange={() => {
+                                            setCacheSwitchOn(!cacheSwitchOn)
+                                        }}
+                                        color={"#56B7E9"}
+                                    >
+
+                                    </Switch>
+                                    <Text style={{color: "#fff"}}>
+                                        {cacheSwitchOn ? "enabled" : "disabled"}
+                                    </Text>
+                                </View>
+
+                                <Button
+                                    title={"Clear cache"}
+                                    type={"outline"}
+                                    buttonStyle={styles.cacheBtnContainer}
+                                    titleStyle={styles.cacheBtnTitle}
                                 />
-                                <Text style={{color: "#fff"}}>
-                                    { filterOn ? "enabled" : "disabled" }
-                                </Text>
                             </View>
                         </View>
+                        <Divider style={styles.divider} />
+
+                        <View>
+                            <Text style={styles.subTitle}>Auto-save my filter settings</Text>
+                            <View style={styles.cacheContainer}>
+                                <View style={{flexDirection: "row", alignItems: "center", }}>
+                                    <Switch
+                                        value={filterOn}
+                                        onValueChange={() => {
+                                            setFilterOn(!filterOn)
+                                        }}
+                                        color={"#56B7E9"}
+                                    />
+                                    <Text style={{color: "#fff"}}>
+                                        { filterOn ? "enabled" : "disabled" }
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                        <Divider style={styles.divider} />
                     </View>
-                    <Divider style={styles.divider} />
-                </View>
 
 
-                <View>
-                    <Button
-                        title={"Logout"}
-                        onPress={() => navigation.navigate("Login")}
-                        type="outline"
-                        buttonStyle={styles.logOutBtn}
-                    />
+                    <View>
+                        <Button
+                            title={"Logout"}
+                            onPress={() => navigation.navigate("Login")}
+                            type="outline"
+                            buttonStyle={styles.logOutBtn}
+                        />
+                    </View>
                 </View>
+
             </SafeAreaView>
         </ScrollView>
     )
@@ -132,7 +154,7 @@ const styles = StyleSheet.create({
     },
     sideMenuContainer: {
         justifyContent: "space-between",
-        paddingBottom: 50
+        paddingBottom: 50,
     },
     header: {
         flexDirection: "row",
@@ -141,8 +163,8 @@ const styles = StyleSheet.create({
         padding: 10
     },
     headerTitle: {
-        fontSize: 18,
-        color: "#fff"
+        fontSize: 22,
+        color: "#fff",
     },
     subTitle: {
         color: '#fff',
@@ -182,7 +204,7 @@ const styles = StyleSheet.create({
         paddingRight: 10
     },
     logOutBtn: {
-        width: 100,
+        width: "90%",
         alignSelf: "center",
         marginTop: 20
     }

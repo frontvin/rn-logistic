@@ -1,13 +1,14 @@
-import React, {useState} from "react";
-import {View, Text, Image, StyleSheet, ScrollView, Platform, SafeAreaView, Dimensions} from "react-native";
+import React from "react";
+import {View, Text, StyleSheet, ScrollView, SafeAreaView, Dimensions} from "react-native";
 import {Search} from "../../components/Search";
 import {Divider, Header} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Paragraph, List, Title, Avatar} from "react-native-paper";
 import {Constants} from "expo/build/globals.web";
 import { SliderBox } from 'react-native-image-slider-box';
+import MapComponent from "../../components/Geolocation";
 
-export const Page2: React.FC = () => {
+export const Page2: React.FC<any> = ({navigation, geolocation}) => {
   const images = [
       "https://source.unsplash.com/1024x768/?nature",
       "https://source.unsplash.com/1024x768/?water",
@@ -20,7 +21,7 @@ export const Page2: React.FC = () => {
           <View>
               <Header
                   placement="left"
-                  leftComponent={{ icon: 'menu', color: '#fff' }}
+                  leftComponent={{ icon: 'menu', size: 35, color: '#fff', onPress: () => navigation.openDrawer() }}
                   centerComponent={<Search />}
                   containerStyle={{
                       backgroundColor: '#3D6DCC',
@@ -30,10 +31,10 @@ export const Page2: React.FC = () => {
                       height:60
                   }}
               />
-              <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight - 50}}>
+              <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight-80}}>
                   <View style={{flexDirection: "column"}}>
                       <View style={{flexDirection: "row"}}>
-                          <View style={{padding: 10, width: "60%",}}>
+                          <View style={{padding: 20, width: "60%",}}>
                               <View>
                                   <View style={{flexDirection: 'row', justifyContent: "space-between", paddingBottom: 20}}>
                                       <View>
@@ -58,11 +59,13 @@ export const Page2: React.FC = () => {
                                           description="Item description"
                                           left={props => <List.Icon {...props} icon="check" color={"#3D6DCC"}/>}
                                       />
+                                      <Divider style={styles.divider} />
                                       <List.Item
                                           title="Second Item"
                                           description="Item description"
                                           left={props => <List.Icon {...props} icon="check" color={"#3D6DCC"}/>}
                                       />
+                                      <Divider style={styles.divider} />
                                       <List.Item
                                           title="Third Item"
                                           description="Item description"
@@ -74,14 +77,14 @@ export const Page2: React.FC = () => {
                               <View style={{paddingBottom: 15}}>
                                   <Text style={{fontWeight: "bold", paddingBottom: 5}}>Services</Text>
                                   <View style={{backgroundColor: "#F9F9F7"}}>
-                                      <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+                                      <Paragraph style={{padding: 10}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
                                   </View>
                               </View>
 
                               <View style={{paddingBottom: 15}}>
                                   <Text style={{fontWeight: "bold", paddingBottom: 5}}>Business Hours</Text>
                                   <View style={{backgroundColor: "#F9F9F7"}}>
-                                      <Paragraph>Mo - Fr: 8.00 - 17:00h</Paragraph>
+                                      <Paragraph style={{padding: 10}}>Mo - Fr: 8.00 - 17:00h</Paragraph>
                                   </View>
                               </View>
                           </View>
@@ -143,7 +146,7 @@ export const Page2: React.FC = () => {
                       </View>
 
                       <View>
-                           {/*Map will be here*/}
+                          <MapComponent />
                       </View>
                   </View>
 
@@ -158,5 +161,9 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: Constants.statusBarHeight,
     },
-
+    divider: {
+        backgroundColor: 'grey',
+        marginLeft: 10,
+        marginRight: 10
+    },
 });

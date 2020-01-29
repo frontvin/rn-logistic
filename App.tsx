@@ -24,7 +24,7 @@ const AppStack = createStackNavigator({
 
 const Drawer = createDrawerNavigator({
         Main: {
-            screen: Page2,
+            screen: AppStack,
         }
     },{
         contentComponent: SideMenu,

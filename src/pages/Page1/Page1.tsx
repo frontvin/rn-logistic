@@ -79,7 +79,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                             <View style={styles.rightContainer}>
                                 <View>
                                     <Headline style={styles.underline}>Favourites</Headline>
-                                    <Paragraph style={styles.underline}>Item 1</Paragraph>
+                                    <Paragraph style={styles.underline} onPress={() => navigation.navigate("Page2")}>Item 1</Paragraph>
                                     <Paragraph style={styles.underline}>Item 2</Paragraph>
                                     <Paragraph style={styles.underline}>Item 3</Paragraph>
                                 </View>
