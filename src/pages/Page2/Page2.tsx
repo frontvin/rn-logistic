@@ -1,12 +1,13 @@
 import React from "react";
 import {View, Text, StyleSheet, ScrollView, SafeAreaView, Dimensions} from "react-native";
 import {Search} from "../../components/Search";
-import {Divider, Header} from "react-native-elements";
+import {Divider} from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Paragraph, List, Title, Avatar} from "react-native-paper";
 import {Constants} from "expo/build/globals.web";
 import { SliderBox } from 'react-native-image-slider-box';
 import MapComponent from "../../components/Geolocation";
+import {Header} from "../../components/Header";
 
 export const Page2: React.FC<any> = ({navigation, geolocation}) => {
   const images = [
@@ -19,18 +20,19 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
   return (
       <SafeAreaView style={styles.container} >
           <View>
-              <Header
-                  placement="left"
-                  leftComponent={{ icon: 'menu', size: 35, color: '#fff', onPress: () => navigation.openDrawer() }}
-                  centerComponent={<Search />}
-                  containerStyle={{
-                      backgroundColor: '#3D6DCC',
-                      justifyContent: 'space-around',
-                      paddingTop: 0,
-                      margin:0,
-                      height:60
-                  }}
-              />
+              <Header />
+              {/*<Header*/}
+              {/*    placement="left"*/}
+              {/*    leftComponent={{ icon: 'menu', size: 35, color: '#fff', onPress: () => navigation.openDrawer() }}*/}
+              {/*    centerComponent={<Search />}*/}
+              {/*    containerStyle={{*/}
+              {/*        backgroundColor: '#3D6DCC',*/}
+              {/*        justifyContent: 'space-around',*/}
+              {/*        paddingTop: 0,*/}
+              {/*        margin:0,*/}
+              {/*        height:60*/}
+              {/*    }}*/}
+              {/*/>*/}
               <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight-80}}>
                   <View style={{flexDirection: "column"}}>
                       <View style={{flexDirection: "row"}}>

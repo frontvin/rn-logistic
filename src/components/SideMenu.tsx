@@ -49,6 +49,7 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                 </RadioButton.Group>
                             </View>
 
+                            <View accessibilityRole={"radiogroup"}></View>
                         </View>
 
 

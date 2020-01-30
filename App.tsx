@@ -10,7 +10,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { SideMenu } from "./src/components/SideMenu";
 
-
 const AppStack = createStackNavigator({
         Login: Login,
         Page1: Page1,
