@@ -48,8 +48,6 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                     </View>
                                 </RadioButton.Group>
                             </View>
-
-                            <View accessibilityRole={"radiogroup"}></View>
                         </View>
 
 
@@ -70,17 +68,17 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
 
                                     />
                                     : <Picker
-                                        selectedValue={language}
-                                        itemStyle={styles.picker}
-                                        style={styles.picker}
-                                        mode={"dropdown"}
-                                        onValueChange={(itemValue, itemIndex) =>
-                                            setLanguage(itemValue)
-                                        }
-                                    >
-                                        <Picker.Item label="English" value="english" />
-                                        <Picker.Item label="Russian" value="russian" />
-                                    </Picker>
+                                            selectedValue={language}
+                                            itemStyle={styles.picker}
+                                            style={styles.picker}
+                                            mode={"dropdown"}
+                                            onValueChange={(itemValue, itemIndex) =>
+                                                setLanguage(itemValue)
+                                            }
+                                        >
+                                            <Picker.Item label="English" value="english" />
+                                            <Picker.Item label="Russian" value="russian" />
+                                        </Picker>
                             }
 
                         </View>

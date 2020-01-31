@@ -9,11 +9,9 @@ import {
 } from "react-native";
 import MapView from "react-native-maps";
 
-export default class App extends Component {
-
+export default class Geolocation extends Component {
 
     state =  {
-
         focusedLocation: {
             latitude: 37.7900352,
             longitude: -122.4013726,
@@ -24,7 +22,7 @@ export default class App extends Component {
                 0.0122
         },
         locationChosen: false
-    }
+    };
 
     pickLocationHandler = event => {
         const coords = event.nativeEvent.coordinate;
@@ -63,7 +61,12 @@ export default class App extends Component {
                 console.log(err);
                 alert("Fetching the Position failed, please pick one manually!");
             })
+    };
+
+    componentDidMount(): void {
+        this.getLocationHandler()
     }
+
     map: MapView;
 
     render() {
@@ -80,14 +83,14 @@ export default class App extends Component {
                     initialRegion={this.state.focusedLocation}
                     region={!this.state.locationChosen ? this.state.focusedLocation : null}
                     style={styles.map}
-                    onPress={this.pickLocationHandler}
+                    // onPress={this.getLocationHandler}
                     ref={ref => this.map = ref}
                 >
                     {marker}
                 </MapView>
-                <View style={styles.button}>
-                    <Button title="Locate Me" onPress={this.getLocationHandler} />
-                </View>
+                {/*<View style={styles.button}>*/}
+                {/*    <Button title="Locate Me" onPress={this.getLocationHandler} />*/}
+                {/*</View>*/}
             </View>
         );
     }

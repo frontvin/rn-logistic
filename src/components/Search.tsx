@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-// import { SearchBar } from 'react-native-elements';
 import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
-import { Searchbar } from 'react-native-paper';
 import {Icon} from "react-native-elements";
 
-export const Search: React.FC = () => {
+export const Search: React.FC<any> = ({toggleSettings}) => {
     const [search, setSearch] = useState("");
 
     return (
@@ -20,15 +18,22 @@ export const Search: React.FC = () => {
                     setSearch({search});
                 }}
                 value={search}
-                style={{flex: 1, backgroundColor: "#203E66", width: "100%", color: "#fff"}}
+                style={{flex: 1, backgroundColor: "#203E66", width: "100%", color: "#fff", fontSize: 20}}
                 placeholderTextColor="#586F8C"
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={toggleSettings}>
                 <View style={{width: 50, height: 50, backgroundColor: "#203E66", justifyContent: "center", alignItems: "center"}}>
-                    <Icon name={'settings'} size={35} color={'#fff'}></Icon>
+                    <Icon
+                        name={'settings'}
+                        size={35}
+                        color={'#fff'}
+                    />
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSearch('')}>
+
+            <TouchableOpacity
+                onPress={() => { setSearch('') }}
+            >
                 <View style={{width: 50, height: 50, backgroundColor: "#203E66", justifyContent: "center", alignItems: "center"}}>
                     <Icon
                         name={'close'}

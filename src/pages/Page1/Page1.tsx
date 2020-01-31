@@ -1,12 +1,18 @@
 import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform, TouchableOpacity } from "react-native";
 import { Search } from "../../components/Search";
-import {Divider, Header} from "react-native-elements";
+import { Divider } from "react-native-elements";
 import { Headline, Paragraph, Subheading } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { TopSettingsBar } from "../../components/TopSettingsBar";
 
 export const Page1: React.FC<any> = ( { navigation }) => {
     const [isNewSearch, setIsNewSearch] = useState(false);
+    const [settingsOn, setSettingOn] = useState(false);
+
+    const toggleSettings = () => {
+        setSettingOn(!settingsOn)
+    };
         return (
             <View style={styles.pageWrapper}>
                 <SafeAreaView>
@@ -18,7 +24,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                                 </View>
                             </TouchableOpacity>
 
-                            <Search />
+                            <Search toggleSettings={toggleSettings}/>
 
                             <TouchableOpacity onPress={ () => setIsNewSearch(!isNewSearch) }>
                                 <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
@@ -39,7 +45,13 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                     </View>
                 </SafeAreaView>
 
+
+
                 <ScrollView>
+                    {
+                        settingsOn ? <TopSettingsBar /> : null
+                    }
+
                     <View style={styles.container}>
                         <View style={styles.headerContainer}>
                             <Text style={styles.heading}>Choose a KN facility for detailed information</Text>
