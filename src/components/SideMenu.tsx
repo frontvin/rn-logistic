@@ -66,6 +66,8 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                             { label: 'English', value: 'english' },
                                             { label: 'Russian', value: 'russian' },
                                         ]}
+                                        style={styles.picker}
+
                                     />
                                     : <Picker
                                         selectedValue={language}

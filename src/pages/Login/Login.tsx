@@ -5,26 +5,29 @@ import { Button } from "react-native-elements";
 export const Login: React.FC<any> = ({navigation}) => {
         return (
                 <SafeAreaView style={loginStyles.container}>
-                    <Text style={loginStyles.companyName}>KN <Text style={{color: "#56B7E9"}}>Sales</Text>Companion</Text>
-                    <View style={{flexDirection: 'row', justifyContent: "center", alignItems: "flex-end"}}>
-                        <TextInput
-                            style={loginStyles.textInput}
-                            placeholder={"Username"}
-                            placeholderTextColor={"#7E8FA6"}
-                        />
-                        <TextInput
-                            style={loginStyles.textInput}
-                            placeholder={"Password"}
-                            placeholderTextColor={"#7E8FA6"}
-                            secureTextEntry={true}
-                        />
-                        <View style={loginStyles.btnContainer}>
-                            <Button
-                                title={"Login"}
-                                onPress={() => navigation.navigate("Page1")}
+                    <View style={{paddingTop: "10%"}}>
+                        <Text style={loginStyles.companyName}>KN <Text style={{color: "#56B7E9"}}>Sales</Text>Companion</Text>
+                        <View style={{flexDirection: 'row', justifyContent: "center", alignItems: "flex-end"}}>
+                            <TextInput
+                                style={loginStyles.textInput}
+                                placeholder={"Username"}
+                                placeholderTextColor={"#7E8FA6"}
                             />
+                            <TextInput
+                                style={loginStyles.textInput}
+                                placeholder={"Password"}
+                                placeholderTextColor={"#7E8FA6"}
+                                secureTextEntry={true}
+                            />
+                            <View style={loginStyles.btnContainer}>
+                                <Button
+                                    title={"Login"}
+                                    onPress={() => navigation.navigate("Page1")}
+                                />
+                            </View>
                         </View>
                     </View>
+
                 </SafeAreaView>
         )
 };
@@ -35,7 +38,6 @@ const loginStyles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#072955',
-        paddingTop: "10%"
     },
     companyName: {
         color: '#fff',

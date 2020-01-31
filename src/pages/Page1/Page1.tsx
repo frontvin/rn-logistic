@@ -1,30 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform, TouchableOpacity } from "react-native";
 import { Search } from "../../components/Search";
-import { Divider } from "react-native-elements";
+import {Divider, Header} from "react-native-elements";
 import { Headline, Paragraph, Subheading } from "react-native-paper";
-import { Header } from "../../components/Header";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export const Page1: React.FC<any> = ( { navigation }) => {
-
+    const [isNewSearch, setIsNewSearch] = useState(false);
         return (
             <View style={styles.pageWrapper}>
                 <SafeAreaView>
-                {/*<Header*/}
-                {/*    placement="left"*/}
-                {/*    leftComponent={{ icon: 'menu', size: 35, color: '#fff', onPress: () => navigation.openDrawer(), style:{backgroundColor: "#56B7E9"}}}*/}
-                {/*    rightComponent={{ icon: 'plus', type: 'font-awesome', size: 35, color: '#fff', onPress: () => {} }}*/}
-                {/*    centerComponent={ <Search /> }*/}
-                {/*    containerStyle={{*/}
-                {/*        backgroundColor: '#3D6DCC',*/}
-                {/*        justifyContent: 'space-around',*/}
-                {/*        paddingTop: 0,*/}
-                {/*        margin:0,*/}
-                {/*        height:60*/}
-                {/*    }}*/}
-                {/*/>*/}
+                    <View style={{backgroundColor: "#2D486D"}}>
+                        <View style={{flexDirection: "row", justifyContent: "space-between", width: "100%"}}>
+                            <TouchableOpacity onPress={ () => navigation.openDrawer() }>
+                                <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
+                                    <Icon name={'bars'} size={35} color={'#fff'}></Icon>
+                                </View>
+                            </TouchableOpacity>
 
-                <Header />
+                            <Search />
+
+                            <TouchableOpacity onPress={ () => setIsNewSearch(!isNewSearch) }>
+                                <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
+                                    {
+                                        isNewSearch
+                                            ? <Icon name={"minus"} size={35} color={'#fff'}></Icon>
+                                            : <Icon name={"plus"} size={35} color={'#fff'}></Icon>
+                                    }
+
+                                </View>
+                            </TouchableOpacity>
+
+                            {
+                                isNewSearch
+                                    ? <Search />
+                                    : null}
+                        </View>
+                    </View>
                 </SafeAreaView>
 
                 <ScrollView>
