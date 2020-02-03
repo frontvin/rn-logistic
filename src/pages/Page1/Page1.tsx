@@ -39,7 +39,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
 
                             {
                                 isNewSearch
-                                    ? <Search />
+                                    ? <Search toggleSettings={toggleSettings}/>
                                     : null}
                         </View>
                     </View>
@@ -47,118 +47,120 @@ export const Page1: React.FC<any> = ( { navigation }) => {
 
 
 
-                <ScrollView>
+                <View>
                     {
                         settingsOn ? <TopSettingsBar /> : null
                     }
-
-                    <View style={styles.container}>
-                        <View style={styles.headerContainer}>
-                            <Text style={styles.heading}>Choose a KN facility for detailed information</Text>
-                            <Text style={styles.headerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-                        </View>
-
-                        <View style={styles.contentContainer}>
-                            <View style={styles.leftContainer}>
-                                <Headline style={styles.headline}>
-                                    KN <Text style={{color: "#56B7E9"}}>Sales</Text>Companion
-                                </Headline>
-                                <Subheading style={styles.subheading}>
-                                    A better conversation.
-                                </Subheading>
-                                <Paragraph style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Paragraph>
-                                <View style={styles.imgContainer}>
-                                    <Image
-                                        style={{ width: 150, height: 150 }}
-                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                                    </Image>
-                                </View>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
-                                <View style={styles.imgContainer}>
-                                    <Image
-                                        style={{ width: 150, height: 150 }}
-                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                                    </Image>
-                                </View>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
-                                <View style={styles.imgContainer}>
-                                    <Image
-                                        style={{ width: 150, height: 150 }}
-                                        source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
-                                    </Image>
-                                </View>
-                                <Text style={styles.text}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </Text>
+                    <ScrollView>
+                        <View style={styles.container}>
+                            <View style={styles.headerContainer}>
+                                <Text style={styles.heading}>Choose a KN facility for detailed information</Text>
+                                <Text style={styles.headerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
                             </View>
 
-                            <View style={styles.rightContainer}>
-                                <View style={{paddingBottom: 40}}>
-                                    <Text style={styles.sidebarHeading}>Favourites</Text>
-                                    <Divider style={styles.divider} />
-
-                                    <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate("Page2")}>
-                                        <Text style={styles.sidebarHeading}>KN Airfreight Center</Text>
-                                        <Text style={styles.sidebarSubHeading}>Munich (MUC) DE</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
-
-                                    <TouchableOpacity style={styles.itemContainer}>
-                                        <Text style={styles.sidebarHeading}>Cargo City Sued</Text>
-                                        <Text style={styles.sidebarSubHeading}>Frankfurt (FRA) DE</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
-
-                                    <TouchableOpacity style={styles.itemContainer}>
-                                        <Text style={styles.sidebarHeading}>RoadHub SW</Text>
-                                        <Text style={styles.sidebarSubHeading}>Augsburg DE</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
+                            <View style={styles.contentContainer}>
+                                <View style={styles.leftContainer}>
+                                    <Headline style={styles.headline}>
+                                        KN <Text style={{color: "#56B7E9"}}>Sales</Text>Companion
+                                    </Headline>
+                                    <Subheading style={styles.subheading}>
+                                        A better conversation.
+                                    </Subheading>
+                                    <Paragraph style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Paragraph>
+                                    <View style={styles.imgContainer}>
+                                        <Image
+                                            style={{ width: 150, height: 150 }}
+                                            source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                        </Image>
+                                    </View>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
+                                    <View style={styles.imgContainer}>
+                                        <Image
+                                            style={{ width: 150, height: 150 }}
+                                            source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                        </Image>
+                                    </View>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
+                                    <View style={styles.imgContainer}>
+                                        <Image
+                                            style={{ width: 150, height: 150 }}
+                                            source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                        </Image>
+                                    </View>
+                                    <Text style={styles.text}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </Text>
                                 </View>
 
-                                <View>
-                                    <Text style={styles.sidebarHeading}>Last Used</Text>
-                                    <Divider style={styles.divider} />
+                                <View style={styles.rightContainer}>
+                                    <View style={{paddingBottom: 40}}>
+                                        <Text style={styles.sidebarHeading}>Favourites</Text>
+                                        <Divider style={styles.divider} />
 
-                                    <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate("Page2")}>
-                                        <Text style={styles.sidebarHeading}>KN Office</Text>
-                                        <Text style={styles.sidebarSubHeading}>Munich DE</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
+                                        <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate("Page2")}>
+                                            <Text style={styles.sidebarHeading}>KN Airfreight Center</Text>
+                                            <Text style={styles.sidebarSubHeading}>Munich (MUC) DE</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
 
-                                    <TouchableOpacity style={styles.itemContainer}>
-                                        <Text style={styles.sidebarHeading}>KN Cargo Hub</Text>
-                                        <Text style={styles.sidebarSubHeading}>Linz AT</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
+                                        <TouchableOpacity style={styles.itemContainer}>
+                                            <Text style={styles.sidebarHeading}>Cargo City Sued</Text>
+                                            <Text style={styles.sidebarSubHeading}>Frankfurt (FRA) DE</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
 
-                                    <TouchableOpacity style={styles.itemContainer}>
-                                        <Text style={styles.sidebarHeading}>RoadHub SW</Text>
-                                        <Text style={styles.sidebarSubHeading}>Augsburg DE</Text>
-                                    </TouchableOpacity>
-                                    <Divider style={styles.divider} />
+                                        <TouchableOpacity style={styles.itemContainer}>
+                                            <Text style={styles.sidebarHeading}>RoadHub SW</Text>
+                                            <Text style={styles.sidebarSubHeading}>Augsburg DE</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
+                                    </View>
+
+                                    <View>
+                                        <Text style={styles.sidebarHeading}>Last Used</Text>
+                                        <Divider style={styles.divider} />
+
+                                        <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate("Page2")}>
+                                            <Text style={styles.sidebarHeading}>KN Office</Text>
+                                            <Text style={styles.sidebarSubHeading}>Munich DE</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
+
+                                        <TouchableOpacity style={styles.itemContainer}>
+                                            <Text style={styles.sidebarHeading}>KN Cargo Hub</Text>
+                                            <Text style={styles.sidebarSubHeading}>Linz AT</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
+
+                                        <TouchableOpacity style={styles.itemContainer}>
+                                            <Text style={styles.sidebarHeading}>RoadHub SW</Text>
+                                            <Text style={styles.sidebarSubHeading}>Augsburg DE</Text>
+                                        </TouchableOpacity>
+                                        <Divider style={styles.divider} />
+                                    </View>
                                 </View>
+
                             </View>
 
                         </View>
+                    </ScrollView>
+                </View>
 
-                    </View>
-                </ScrollView>
             </View>
         )
 };
