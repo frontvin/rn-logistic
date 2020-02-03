@@ -68,42 +68,43 @@ export const TopSettingsBar: React.FC<any> = () => {
     // buttons
     const [isBtnEnabled, setIsBtnEnabled] = useState(
         [
-            {iconName: "plane", isEnabled: true, color: "#fff"},
-            {iconName: "ship", isEnabled: true, color: "#fff"},
-            {iconName: "truck", isEnabled: true, color: "#fff"},
-            {iconName: "train", isEnabled: true, color: "#fff"}
+            {iconName: "plane", isEnabled: true},
+            {iconName: "ship", isEnabled: true},
+            {iconName: "truck", isEnabled: true},
+            {iconName: "train", isEnabled: true}
         ]
     );
 
     const setButtonState = (val, ind) => {
         setIsBtnEnabled((prev) => {
             const newButtons = [...prev];
-            newButtons[ind].isEnabled = val;
+            newButtons[ind].isEnabled = !val;
             return newButtons
         })
     };
 
     const transportItem = ({item, index}) => (
-        <Button
-            icon={
-                <Icon
-                    name={item.iconName}
-                    color={
-                        item.color
-                    }
-                    size={20}
-                    style={{paddingHorizontal: 13}}
-                />
-            }
-            buttonStyle={{
+        <TouchableOpacity
+            accessibilityComponentType={"radiobutton_checked"}
+            style={{
                 borderWidth: 1,
                 borderTopRightRadius: 0,
+                padding: 5,
                 borderBottomRightRadius:0,
                 backgroundColor: 'transparent',
-                borderColor: item.color
+                borderColor: item.isEnabled ? "#fff" : "grey"
             }}
             onPress={() => setButtonState}
-        />
+        >
+            <Icon
+                name={item.iconName}
+                color={
+                    item.isEnabled ? "#fff" : "grey"
+                }
+                size={20}
+                style={{paddingHorizontal: 13}}
+            />
+        </TouchableOpacity>
     );
 
     return(
