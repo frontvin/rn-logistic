@@ -52,7 +52,7 @@ export const TopSettingsBar: React.FC<any> = () => {
     };
 
     const serviceItem = ({item, index}) => (
-        <View style={{flexDirection: "row", borderBottomWidth: 0.5, borderColor: "#fff", paddingVertical: 5}}>
+        <View style={{flexDirection: "row", borderBottomWidth: 0.5, borderColor: "#fff", paddingVertical: 3.9}}>
             <Switch
                 value={item.checked}
                 onValueChange={(value) => {
@@ -113,36 +113,19 @@ export const TopSettingsBar: React.FC<any> = () => {
                 </TouchableOpacity>
             </View>
             
-            <View style={{flexDirection: 'row', justifyContent: "space-between"}}>
+            <View style={{flexDirection: 'row', justifyContent: "space-between" }}>
                 <View style={styles.column}>
-                    <View>
+                    <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5, fontWeight: "bold"}}>Filter by geography</Text>
                         <Text style={{color: '#fff', fontSize: 12, borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>
                             Searching in all regions by default.
                             Select region - and optionally country - to limit
                             search to your selection.
                         </Text>
-                        <FlatList
-                            data={location}
-                            renderItem={locationItem}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
                     </View>
-                    <View style={{flexDirection: "row"}}>
-
-                    </View>
-
                 </View>
                 <View style={styles.column}>
-                    <FlatList
-                        data={location}
-                        renderItem={locationItem}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
-
-                <View style={styles.column}>
-                    <View>
+                    <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5}}>Filter by model of transport</Text>
                         <View>
                             <FlatList
@@ -151,94 +134,33 @@ export const TopSettingsBar: React.FC<any> = () => {
                                 keyExtractor={(item, index) => index.toString()}
                                 contentContainerStyle={{flexDirection: "row", justifyContent: "center", paddingBottom: 15}}
                             />
-                            {/*<Button*/}
-                            {/*    icon={*/}
-                            {/*        <Icon*/}
-                            {/*            name={"plane"}*/}
-                            {/*            color={*/}
-                            {/*                isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*            }*/}
-                            {/*            size={20}*/}
-                            {/*            style={{paddingHorizontal: 13}}*/}
-                            {/*        />*/}
-                            {/*    }*/}
-                            {/*    buttonStyle={{*/}
-                            {/*        borderWidth: 1,*/}
-                            {/*        borderTopRightRadius: 0,*/}
-                            {/*        borderBottomRightRadius:0,*/}
-                            {/*        backgroundColor: 'transparent',*/}
-                            {/*        borderColor: isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*    }}*/}
-                            {/*    onPress={() => setIsDtnEnabled(!isBtnEnabled)}*/}
-                            {/*/>*/}
-                            {/*<Button*/}
-                            {/*    icon={*/}
-                            {/*        <Icon*/}
-                            {/*            name={"ship"}*/}
-                            {/*            color={*/}
-                            {/*                isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*            }*/}
-                            {/*            size={20}*/}
-                            {/*            style={{paddingHorizontal: 13}}*/}
-                            {/*        />*/}
-                            {/*    }*/}
-                            {/*    buttonStyle={{*/}
-                            {/*        borderWidth: 1,*/}
-                            {/*        borderRadius: 0,*/}
-                            {/*        backgroundColor: 'transparent',*/}
-                            {/*        borderColor: isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*    }}*/}
-                            {/*    onPress={() => setIsDtnEnabled(!isBtnEnabled)}*/}
-                            {/*/>*/}
-                            {/*<Button*/}
-                            {/*    icon={*/}
-                            {/*        <Icon*/}
-                            {/*            name={"truck"}*/}
-                            {/*            color={*/}
-                            {/*                isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*            }*/}
-                            {/*            size={20}*/}
-                            {/*            style={{paddingHorizontal: 13}}*/}
-                            {/*        />*/}
-                            {/*    }*/}
-                            {/*    buttonStyle={{*/}
-                            {/*        borderWidth: 1,*/}
-                            {/*        borderRadius: 0,*/}
-                            {/*        backgroundColor: 'transparent',*/}
-                            {/*        borderColor: isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*    }}*/}
-                            {/*    onPress={() => setIsDtnEnabled(!isBtnEnabled)}*/}
-                            {/*/>*/}
-                            {/*<Button*/}
-                            {/*    icon={*/}
-                            {/*        <Icon*/}
-                            {/*            name={"train"}*/}
-                            {/*            color={*/}
-                            {/*                isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*            }*/}
-                            {/*            size={20}*/}
-                            {/*            style={{paddingHorizontal: 13}}*/}
-                            {/*        />*/}
-                            {/*    }*/}
-                            {/*    buttonStyle={{*/}
-                            {/*        borderWidth: 1,*/}
-                            {/*        borderTopLeftRadius: 0,*/}
-                            {/*        borderBottomLeftRadius:0,*/}
-                            {/*        backgroundColor: 'transparent',*/}
-                            {/*        borderColor: isBtnEnabled ? "grey" : "#fff"*/}
-                            {/*    }}*/}
-                            {/*    onPress={() => setIsDtnEnabled(!isBtnEnabled)}*/}
-                            {/*/>*/}
                         </View>
                     </View>
-                    <View>
-                        <Text style={{color: "#fff", borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>Filter by Service</Text>
-                        <FlatList
-                            data={checkService}
-                            renderItem={serviceItem}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
-                    </View>
+                </View>
+            </View>
+
+            <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+                <View style={styles.column}>
+                    <FlatList
+                        data={location}
+                        renderItem={locationItem}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
+                <View style={styles.column}>
+                    <FlatList
+                        data={location}
+                        renderItem={locationItem}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
+                <View style={styles.column}>
+                    <Text style={{color: "#fff", borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 10}}>Filter by Service</Text>
+                    <FlatList
+                        data={checkService}
+                        renderItem={serviceItem}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
                 </View>
             </View>
         </View>
