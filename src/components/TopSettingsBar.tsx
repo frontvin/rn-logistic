@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {View, Text, Dimensions, StyleSheet, TouchableOpacity, FlatList} from "react-native";
-import {Button} from 'react-native-elements';
 import Icon from "react-native-vector-icons/FontAwesome";
 import {Switch} from "react-native-paper";
 
@@ -78,23 +77,19 @@ export const TopSettingsBar: React.FC<any> = () => {
     const setButtonState = (val, ind) => {
         setIsBtnEnabled((prev) => {
             const newButtons = [...prev];
-            newButtons[ind].isEnabled = !val;
+            newButtons[ind].isEnabled = !newButtons[ind].isEnabled;
             return newButtons
         })
     };
 
     const transportItem = ({item, index}) => (
         <TouchableOpacity
-            accessibilityComponentType={"radiobutton_checked"}
             style={{
                 borderWidth: 1,
-                borderTopRightRadius: 0,
-                padding: 5,
-                borderBottomRightRadius:0,
                 backgroundColor: 'transparent',
                 borderColor: item.isEnabled ? "#fff" : "grey"
             }}
-            onPress={() => setButtonState}
+            onPress={(item) => setButtonState(item, index)}
         >
             <Icon
                 name={item.iconName}
@@ -102,38 +97,48 @@ export const TopSettingsBar: React.FC<any> = () => {
                     item.isEnabled ? "#fff" : "grey"
                 }
                 size={20}
-                style={{paddingHorizontal: 13}}
+                style={{
+                    paddingHorizontal: 20,
+                    paddingVertical: 8,
+                }}
             />
         </TouchableOpacity>
     );
 
     return(
         <View style={styles.settingsBarContainer}>
-            <TouchableOpacity onPress={() => {}}>
-                <View style={{flexDirection: 'row', justifyContent: "flex-end", padding: 10}}>
+            <View style={{flexDirection: 'row', justifyContent: "flex-end", padding: 10}}>
+                <TouchableOpacity onPress={() => {}}>
                     <Icon name={"close"} size={25} color={"#fff"}></Icon>
-                </View>
-            </TouchableOpacity>
-
+                </TouchableOpacity>
+            </View>
+            
             <View style={{flexDirection: 'row', justifyContent: "space-between"}}>
                 <View style={styles.column}>
-                    <Text style={{color: "#fff", paddingBottom: 5, fontWeight: "bold"}}>Filter by geography</Text>
-                    <Text style={{color: '#fff', fontSize: 12, borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>
-                        Searching in all regions by default.
-                        Select region - and optionally country - to limit
-                        search to your selection.
-                    </Text>
+                    <View>
+                        <Text style={{color: "#fff", paddingBottom: 5, fontWeight: "bold"}}>Filter by geography</Text>
+                        <Text style={{color: '#fff', fontSize: 12, borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>
+                            Searching in all regions by default.
+                            Select region - and optionally country - to limit
+                            search to your selection.
+                        </Text>
+                        <FlatList
+                            data={location}
+                            renderItem={locationItem}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
+                    <View style={{flexDirection: "row"}}>
 
+                    </View>
+
+                </View>
+                <View style={styles.column}>
                     <FlatList
                         data={location}
                         renderItem={locationItem}
                         keyExtractor={(item, index) => index.toString()}
                     />
-
-                </View>
-
-                <View style={styles.column}>
-
                 </View>
 
                 <View style={styles.column}>
@@ -251,7 +256,8 @@ const styles = StyleSheet.create({
        backgroundColor: "#072955"
    },
    column: {
-       width: Dimensions.get('window').width/3,
+       // width: Dimensions.get('window').width/2,
+       flex: 1,
        paddingLeft: 15,
        paddingRight: 15
    }
