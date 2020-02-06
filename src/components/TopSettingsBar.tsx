@@ -1,35 +1,76 @@
 import React, {useState} from 'react'
-import {View, Text, Dimensions, StyleSheet, TouchableOpacity, FlatList} from "react-native";
+import {View, Text, Dimensions, StyleSheet, TouchableOpacity, FlatList, Platform, Picker} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {Switch} from "react-native-paper";
+import RNPickerSelect from "react-native-picker-select";
 
 export const TopSettingsBar: React.FC<any> = () => {
 
     // locations
     const location = [
-        {name: "Africa"},
-        {name: "Asia Pacific"},
-        {name: "Europe"},
-        {name: "Middle East"},
-        {name: "North America"},
-        {name: "South and Central America"},
+        {name: "Africa", toggleIn: false},
+        {name: "Asia Pacific", toggleIn: false},
+        {name: "Europe", toggleIn: false},
+        {name: "Middle East", toggleIn: false},
+        {name: "North America", toggleIn: false},
+        {name: "South and Central America", toggleIn: false},
     ];
 
+    const [language, setLanguage] = useState("English");
+
     const locationItem = ({item}) => (
-        <View style={{borderBottomWidth: 0.5, borderColor: "#fff"}}>
-            <TouchableOpacity
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                }}
-            >
-                <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
-                <Icon name={"chevron-right"} color={"#56B7E9"} size={15}></Icon>
-            </TouchableOpacity>
+        <View style={{flexDirection: "row", flexGrow: 2}}>
+            <View style={[styles.column, {borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+                <TouchableOpacity
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                    }}
+                >
+                    <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
+                    <Icon name={"chevron-right"} color={"#56B7E9"} size={15}></Icon>
+                </TouchableOpacity>
+            </View>
+            <View style={[styles.column, {borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+                <TouchableOpacity
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                    }}
+                >
+                    {
+                        Platform.OS === 'ios' ?
+                            <RNPickerSelect
+                                onValueChange={(itemValue, itemIndex)  =>
+                                    setLanguage(itemValue)}
+                                items={[
+                                    { label: 'English', value: 'english' },
+                                    { label: 'Russian', value: 'russian' },
+                                ]}
+
+                            />
+                            : <Picker
+                                selectedValue={language}
+                                mode={"dropdown"}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    setLanguage(itemValue)
+                                }
+
+                            >
+                                <Picker.Item label="English" value="english" />
+                                <Picker.Item label="Russian" value="russian" />
+                            </Picker>
+                    }
+                </TouchableOpacity>
+            </View>
         </View>
+
     );
 
     // switches
@@ -124,6 +165,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                         </Text>
                     </View>
                 </View>
+                <View style={styles.column} />
                 <View style={styles.column}>
                     <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5}}>Filter by model of transport</Text>
@@ -140,21 +182,21 @@ export const TopSettingsBar: React.FC<any> = () => {
             </View>
 
             <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                <View style={styles.column}>
+                <View style={[styles.column, {flexGrow: 2}]}>
                     <FlatList
                         data={location}
                         renderItem={locationItem}
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
-                <View style={styles.column}>
-                    <FlatList
-                        data={location}
-                        renderItem={locationItem}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
-                <View style={styles.column}>
+                {/*<View style={styles.column}>*/}
+                {/*    <FlatList*/}
+                {/*        data={location}*/}
+                {/*        renderItem={locationItem}*/}
+                {/*        keyExtractor={(item, index) => index.toString()}*/}
+                {/*    />*/}
+                {/*</View>*/}
+                <View style={[styles.column, {flexGrow: 1}]}>
                     <Text style={{color: "#fff", borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 10}}>Filter by Service</Text>
                     <FlatList
                         data={checkService}
