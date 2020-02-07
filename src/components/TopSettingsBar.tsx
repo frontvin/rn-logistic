@@ -7,20 +7,32 @@ import RNPickerSelect from "react-native-picker-select";
 export const TopSettingsBar: React.FC<any> = () => {
 
     // locations
-    const location = [
-        {name: "Africa", toggleIn: false},
-        {name: "Asia Pacific", toggleIn: false},
-        {name: "Europe", toggleIn: false},
-        {name: "Middle East", toggleIn: false},
-        {name: "North America", toggleIn: false},
-        {name: "South and Central America", toggleIn: false},
-    ];
 
-    const [language, setLanguage] = useState("English");
+    const [language, setLanguage] = useState(0);
 
-    const locationItem = ({item}) => (
-        <View style={{flexDirection: "row", flexGrow: 2}}>
-            <View style={[styles.column, {borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+    const [locationsActive, setActiveLocation] = useState(
+        [
+            {name: "Africa", toggleIn: false},
+            {name: "Asia Pacific", toggleIn: false},
+            {name: "Europe", toggleIn: false},
+            {name: "Middle East", toggleIn: false},
+            {name: "North America", toggleIn: false},
+            {name: "South and Central America", toggleIn: false},
+        ]
+    );
+    const values = ['Choose Country (optional)', 'Turkey', 'Russia', 'Iran'];
+
+    const setActiveLocationState = (val, ind) => {
+        setActiveLocation((prev) => {
+            const newLocations = [...prev];
+            newLocations[ind].toggleIn = !newLocations[ind].toggleIn;
+            return newLocations
+        })
+    };
+
+    const locationItem = ({item, index} ) => (
+        <View style={{flexDirection: "row", width: item.toggleIn ? 500 : 250}}>
+            <View style={[styles.column, { borderBottomWidth: 0.5, borderColor: "#fff"}]}>
                 <TouchableOpacity
                     style={{
                         flexDirection: "row",
@@ -29,13 +41,18 @@ export const TopSettingsBar: React.FC<any> = () => {
                         paddingTop: 5,
                         paddingBottom: 5,
                     }}
+                    onPress={(item)=>{
+                        setActiveLocationState(item, index);
+                    }}
                 >
                     <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
                     <Icon name={"chevron-right"} color={"#56B7E9"} size={15}></Icon>
                 </TouchableOpacity>
             </View>
-            <View style={[styles.column, {borderBottomWidth: 0.5, borderColor: "#fff"}]}>
-                <TouchableOpacity
+            {
+            item.toggleIn ?
+            <View style={[styles.column, {flex:1, borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+                <View
                     style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
@@ -53,22 +70,28 @@ export const TopSettingsBar: React.FC<any> = () => {
                                     { label: 'English', value: 'english' },
                                     { label: 'Russian', value: 'russian' },
                                 ]}
-
                             />
                             : <Picker
                                 selectedValue={language}
+                                style={[styles.picker, {display: "flex"}]}
                                 mode={"dropdown"}
                                 onValueChange={(itemValue, itemIndex) =>
                                     setLanguage(itemValue)
                                 }
-
                             >
-                                <Picker.Item label="English" value="english" />
-                                <Picker.Item label="Russian" value="russian" />
+                                {values
+                                    .filter((value, index) => language === 0 ? value : index === 0 ? false : value)
+                                    .map((value, index) => (
+                                        <Picker.Item label={value} value={value} key={index} />
+                                    ))
+                                }
                             </Picker>
+
                     }
-                </TouchableOpacity>
+                </View>
             </View>
+            : null
+            }
         </View>
 
     );
@@ -153,9 +176,9 @@ export const TopSettingsBar: React.FC<any> = () => {
                     <Icon name={"close"} size={25} color={"#fff"}></Icon>
                 </TouchableOpacity>
             </View>
-            
+
             <View style={{flexDirection: 'row', justifyContent: "space-between" }}>
-                <View style={styles.column}>
+                <View style={[styles.column, {flex: 2}]}>
                     <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5, fontWeight: "bold"}}>Filter by geography</Text>
                         <Text style={{color: '#fff', fontSize: 12, borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>
@@ -165,15 +188,14 @@ export const TopSettingsBar: React.FC<any> = () => {
                         </Text>
                     </View>
                 </View>
-                <View style={styles.column} />
-                <View style={styles.column}>
+                <View style={[styles.column, {flex: 1}]}>
                     <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5}}>Filter by model of transport</Text>
                         <View>
                             <FlatList
                                 data={isBtnEnabled}
                                 renderItem={transportItem}
-                                keyExtractor={(item, index) => index.toString()}
+                                keyExtractor={(item, index) => index.toString() +1}
                                 contentContainerStyle={{flexDirection: "row", justifyContent: "center", paddingBottom: 15}}
                             />
                         </View>
@@ -184,18 +206,11 @@ export const TopSettingsBar: React.FC<any> = () => {
             <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                 <View style={[styles.column, {flexGrow: 2}]}>
                     <FlatList
-                        data={location}
+                        data={locationsActive}
                         renderItem={locationItem}
-                        keyExtractor={(item, index) => index.toString()}
+                        keyExtractor={(item, index) => index.toString()+1}
                     />
                 </View>
-                {/*<View style={styles.column}>*/}
-                {/*    <FlatList*/}
-                {/*        data={location}*/}
-                {/*        renderItem={locationItem}*/}
-                {/*        keyExtractor={(item, index) => index.toString()}*/}
-                {/*    />*/}
-                {/*</View>*/}
                 <View style={[styles.column, {flexGrow: 1}]}>
                     <Text style={{color: "#fff", borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 10}}>Filter by Service</Text>
                     <FlatList
@@ -210,19 +225,25 @@ export const TopSettingsBar: React.FC<any> = () => {
 };
 
 const styles = StyleSheet.create({
-   settingsBarContainer: {
-       height: 350,
-       width: Dimensions.get('window').width,
-       zIndex: 222,
-       position: "absolute",
-       top: 0,
-       left: 0,
-       backgroundColor: "#072955"
-   },
-   column: {
-       // width: Dimensions.get('window').width/2,
-       flex: 1,
-       paddingLeft: 15,
-       paddingRight: 15
-   }
+    settingsBarContainer: {
+        height: 350,
+        width: "100%",
+        flex: 1,
+        zIndex: 222,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        backgroundColor: "#072955"
+    },
+    column: {
+        // width: Dimensions.get('window').width/2,
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15
+    },
+    picker: {
+        height: 20,
+        color: "#fff",
+        width: "100%"
+    },
 });
