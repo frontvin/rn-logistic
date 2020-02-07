@@ -7,7 +7,6 @@ import RNPickerSelect from "react-native-picker-select";
 export const TopSettingsBar: React.FC<any> = () => {
 
     // locations
-
     const [language, setLanguage] = useState(0);
 
     const [locationsActive, setActiveLocation] = useState(
@@ -45,13 +44,24 @@ export const TopSettingsBar: React.FC<any> = () => {
                         setActiveLocationState(item, index);
                     }}
                 >
-                    <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
-                    <Icon name={"chevron-right"} color={"#56B7E9"} size={15}></Icon>
+                    {
+                        item.toggleIn ?
+                            <View style={{flexDirection: "row", alignItems: "center"}}>
+                                <Icon name={"check"} color={"#56B7E9"} size={15}></Icon>
+                                <Text style={{color: "#fff", fontSize: 16, paddingLeft: 15}}>{item.name}</Text>
+                            </View>
+
+                        :   <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", flex: 1}}>
+                                <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
+                                <Icon name={"chevron-right"} color={"#56B7E9"} size={15}></Icon>
+                            </View>
+
+                    }
                 </TouchableOpacity>
             </View>
             {
             item.toggleIn ?
-            <View style={[styles.column, {flex:1, borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+            <View style={[styles.column, {flex:1, borderBottomWidth: 0.5, borderTopWidth: 0.5, borderColor: "#fff"}]}>
                 <View
                     style={{
                         flexDirection: "row",
@@ -70,6 +80,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                                     { label: 'English', value: 'english' },
                                     { label: 'Russian', value: 'russian' },
                                 ]}
+                                placeholder={"Choose Country (optional)"}
                             />
                             : <Picker
                                 selectedValue={language}
