@@ -45,8 +45,6 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                     </View>
                 </SafeAreaView>
 
-
-
                 <View>
                     {
                         settingsOn ? <TopSettingsBar /> : null

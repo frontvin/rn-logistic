@@ -8,6 +8,7 @@ import {Constants} from "expo/build/globals.web";
 import { SliderBox } from 'react-native-image-slider-box';
 import MapComponent from "../../components/Geolocation";
 import {Header} from "../../components/Header";
+import {TopSettingsBar} from "../../components/TopSettingsBar";
 
 export const Page2: React.FC<any> = ({navigation, geolocation}) => {
   const images = [
@@ -17,10 +18,15 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
       "https://source.unsplash.com/1024x768/?tree"
   ];
   const [isNewSearch, setIsNewSearch] = useState(false);
+  const [settingsOn, setSettingOn] = useState(false);
+
+  const toggleSettings = () => {
+      setSettingOn(!settingsOn)
+  };
 
   return (
-      <SafeAreaView style={styles.container} >
-          <View>
+      <View style={styles.container} >
+          <SafeAreaView>
               <View style={{backgroundColor: "#2D486D"}}>
                   <View style={{flexDirection: "row", justifyContent: "space-between", width: "100%"}}>
                       <TouchableOpacity onPress={ () => navigation.openDrawer() }>
@@ -29,7 +35,7 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
                           </View>
                       </TouchableOpacity>
 
-                      <Search />
+                      <Search toggleSettings={toggleSettings}/>
 
                       <TouchableOpacity onPress={ () => setIsNewSearch(!isNewSearch) }>
                           <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
@@ -44,23 +50,17 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
 
                       {
                           isNewSearch
-                              ? <Search />
+                              ? <Search toggleSettings={toggleSettings}/>
                               : null}
                   </View>
-
               </View>
-              {/*<Header*/}
-              {/*    placement="left"*/}
-              {/*    leftComponent={{ icon: 'menu', size: 35, color: '#fff', onPress: () => navigation.openDrawer() }}*/}
-              {/*    centerComponent={<Search />}*/}
-              {/*    containerStyle={{*/}
-              {/*        backgroundColor: '#3D6DCC',*/}
-              {/*        justifyContent: 'space-around',*/}
-              {/*        paddingTop: 0,*/}
-              {/*        margin:0,*/}
-              {/*        height:60*/}
-              {/*    }}*/}
-              {/*/>*/}
+          </SafeAreaView>
+
+          <View>
+              {
+                  settingsOn ? <TopSettingsBar /> : null
+              }
+
               <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight-80}}>
                   <View style={{flexDirection: "column"}}>
                       <View style={{flexDirection: "row"}}>
@@ -182,7 +182,7 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
 
               </ScrollView>
           </View>
-      </SafeAreaView>
+      </View>
   )
 };
 
