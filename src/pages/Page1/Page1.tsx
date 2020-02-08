@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform, TouchableOpacity } from "react-native";
 import { Search } from "../../components/Search";
 import { Divider } from "react-native-elements";
-import { Headline, Paragraph, Subheading } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TopSettingsBar } from "../../components/TopSettingsBar";
 
@@ -20,11 +19,11 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                         <View style={{flexDirection: "row", justifyContent: "space-between", width: "100%"}}>
                             <TouchableOpacity onPress={ () => navigation.openDrawer() }>
                                 <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
-                                    <Icon name={'bars'} size={35} color={'#fff'}></Icon>
+                                    <Icon name={'bars'} size={35}></Icon>
                                 </View>
                             </TouchableOpacity>
 
-                            <Search toggleSettings={toggleSettings}/>
+                            <Search toggleSettings={toggleSettings} color={'#fff'}/>
 
                             <TouchableOpacity onPress={ () => setIsNewSearch(!isNewSearch) }>
                                 <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
@@ -53,24 +52,24 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                         <View style={styles.container}>
                             <View style={styles.headerContainer}>
                                 <Text style={styles.heading}>Choose a KN facility for detailed information</Text>
-                                <Text style={styles.headerText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+                                <Text style={styles.headerText}>In the next step, you can add a second facility to highlight synergies or for convenient overview and comparison.</Text>
                             </View>
 
                             <View style={styles.contentContainer}>
                                 <View style={styles.leftContainer}>
-                                    <Headline style={styles.headline}>
+                                    <Text style={styles.headline}>
                                         KN <Text style={{color: "#56B7E9"}}>Sales</Text>Companion
-                                    </Headline>
-                                    <Subheading style={styles.subheading}>
+                                    </Text>
+                                    <Text style={styles.subheading}>
                                         A better conversation.
-                                    </Subheading>
-                                    <Paragraph style={styles.text}>
+                                    </Text>
+                                    <Text style={styles.text}>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </Paragraph>
+                                    </Text>
                                     <View style={styles.imgContainer}>
                                         <Image
                                             style={{ width: 150, height: 150 }}
-                                            source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                            source={{uri: 'https://images.squarespace-cdn.com/content/v1/58d20c79725e25b221549193/1523028284340-2FY0DO8X58JYL5Z2NF2I/ke17ZwdGBToddI8pDm48kJ6OfUsg79IbcV4YOB-L0yJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyamov21KUb00upTBjz6xK-5957lvgLLFemVzDUABLKbJgjfiUaLHq2TK21hqA4N9s/512px-React-icon.svg.png'}}>
                                         </Image>
                                     </View>
                                     <Text style={styles.text}>
@@ -82,7 +81,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                                     <View style={styles.imgContainer}>
                                         <Image
                                             style={{ width: 150, height: 150 }}
-                                            source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}>
+                                            source={{uri: 'https://images.squarespace-cdn.com/content/v1/58d20c79725e25b221549193/1523028284340-2FY0DO8X58JYL5Z2NF2I/ke17ZwdGBToddI8pDm48kJ6OfUsg79IbcV4YOB-L0yJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyamov21KUb00upTBjz6xK-5957lvgLLFemVzDUABLKbJgjfiUaLHq2TK21hqA4N9s/512px-React-icon.svg.png'}}>
                                         </Image>
                                     </View>
                                     <Text style={styles.text}>
@@ -153,8 +152,7 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? 25 : 0
     },
     container: {
-        paddingLeft: 20,
-        paddingRight: 20,
+        paddingHorizontal: 50,
         backgroundColor: "#072955",
     },
     contentContainer: {
@@ -183,30 +181,33 @@ const styles = StyleSheet.create({
     headline: {
         fontWeight: "bold",
         color: "#fff",
-        fontSize: 25
+        fontSize: 36
     },
     subheading: {
         color: "#fff",
-        paddingBottom: 15,
-        fontSize: 20
+        paddingBottom: 35,
+        fontSize: 36
     },
     heading: {
        fontSize: 20,
        textAlign: "center",
-       fontStyle: "italic",
        color: "#fff",
        paddingTop: 15,
        paddingBottom: 15
     },
     headerText: {
        color: "#586F8C",
-       textAlign: "center"
+       textAlign: "center",
+       alignSelf: "center",
+       width: 450,
+       fontSize: 16
     },
     text: {
         color: "#fff",
         fontStyle: "italic",
         fontWeight: "bold",
-        fontSize: 16,
+        lineHeight: 22,
+        fontSize: 18,
     },
     itemContainer: {
         padding: 5

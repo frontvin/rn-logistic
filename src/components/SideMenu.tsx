@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {Dimensions, Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import { Button, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
 import { RadioButton, Switch } from 'react-native-paper';
@@ -14,7 +14,13 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
             <SafeAreaView style={styles.sideMenuContainer}>
-                <View style={{flexDirection: "column", justifyContent: "space-between"}}>
+                <View
+                    style={{
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: Dimensions.get('window').height - 50
+                    }}
+                >
                     <View>
                         <View style={styles.header}>
                             <Text style={styles.headerTitle}>Settings</Text>
@@ -33,7 +39,7 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
 
                         <View>
                             <Text style={styles.subTitle}>Units & Measurement</Text>
-                            <View style={{flexDirection: "row", alignItems: "center", paddingTop: 5, paddingBottom: 5}}>
+                            <View style={{flexDirection: "row", alignItems: "center", paddingVertical: 5, paddingLeft: 5}}>
                                 <RadioButton.Group
                                     onValueChange={value => setValue(value)}
                                     value={value}
@@ -70,7 +76,6 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                     : <Picker
                                             selectedValue={language}
                                             itemStyle={styles.picker}
-                                            style={styles.picker}
                                             mode={"dropdown"}
                                             onValueChange={(itemValue, itemIndex) =>
                                                 setLanguage(itemValue)

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, Dimensions, StyleSheet, TouchableOpacity, FlatList, Platform, Picker} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, FlatList, Platform, Picker} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {Switch} from "react-native-paper";
 import RNPickerSelect from "react-native-picker-select";
@@ -19,6 +19,7 @@ export const TopSettingsBar: React.FC<any> = () => {
             {name: "South and Central America", toggleIn: false},
         ]
     );
+
     const values = ['Choose Country (optional)', 'Turkey', 'Russia', 'Iran'];
 
     const setActiveLocationState = (val, ind) => {
@@ -30,7 +31,7 @@ export const TopSettingsBar: React.FC<any> = () => {
     };
 
     const locationItem = ({item, index} ) => (
-        <View style={{flexDirection: "row", width: item.toggleIn ? 500 : 250}}>
+        <View style={{flexDirection: "row", width: item.toggleIn ? 800 : 350}}>
             <View style={[styles.column, { borderBottomWidth: 0.5, borderColor: "#fff"}]}>
                 <TouchableOpacity
                     style={{
@@ -206,7 +207,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                             <FlatList
                                 data={isBtnEnabled}
                                 renderItem={transportItem}
-                                keyExtractor={(item, index) => index.toString() +1}
+                                keyExtractor={(item, index) => index.toString() }
                                 contentContainerStyle={{flexDirection: "row", justifyContent: "center", paddingBottom: 15}}
                             />
                         </View>
@@ -219,7 +220,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                     <FlatList
                         data={locationsActive}
                         renderItem={locationItem}
-                        keyExtractor={(item, index) => index.toString()+1}
+                        keyExtractor={(item, index) => index.toString() }
                     />
                 </View>
                 <View style={[styles.column, {flexGrow: 1}]}>
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 0,
         left: 0,
-        backgroundColor: "#072955"
+        backgroundColor: "#203E66"
     },
     column: {
         // width: Dimensions.get('window').width/2,
