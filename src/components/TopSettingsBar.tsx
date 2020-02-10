@@ -75,13 +75,30 @@ export const TopSettingsBar: React.FC<any> = () => {
                     {
                         Platform.OS === 'ios' ?
                             <RNPickerSelect
+                                placeholder={{
+                                    label: "Choose Country (optional)",
+                                    value: null,
+                                }}
+                                textInputProps={{
+                                    color: "#fff"
+                                }}
                                 onValueChange={(itemValue, itemIndex)  =>
                                     setLanguage(itemValue)}
                                 items={[
-                                    { label: 'English', value: 'english' },
-                                    { label: 'Russian', value: 'russian' },
+                                    { label: 'Iran', value: 'Iran', key: 1 },
+                                    { label: 'Turkey', value: 'Turkey', key: 2 },
+                                    { label: 'Egypt', value: 'Egypt', key: 3 },
+                                    { label: 'Israel', value: 'Israel', key: 4 },
                                 ]}
-                                placeholder={"Choose Country (optional)"}
+                                style={{
+                                    iconContainer: {
+                                        top: 0,
+                                        right: -330,
+                                    },
+                                }}
+                                Icon={() => {
+                                    return <Icon name="chevron-down" size={14} color="#fff" />;
+                                }}
                             />
                             : <Picker
                                 selectedValue={language}
@@ -128,7 +145,7 @@ export const TopSettingsBar: React.FC<any> = () => {
     };
 
     const serviceItem = ({item, index}) => (
-        <View style={{flexDirection: "row", borderBottomWidth: 0.5, borderColor: "#fff", paddingVertical: 3.9}}>
+        <View style={{flexDirection: "row", alignItems: "center", borderBottomWidth: 0.5, borderColor: "#fff", paddingVertical: 3.9}}>
             <Switch
                 value={item.checked}
                 onValueChange={(value) => {
@@ -136,7 +153,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                 }}
                 color={"#56B7E9"}
             />
-            <Text style={{color: "#fff", fontSize: 16}}>{item.name}</Text>
+            <Text style={{color: "#fff", fontSize: 16, paddingLeft: 10}}>{item.name}</Text>
         </View>
     );
 

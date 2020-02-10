@@ -63,16 +63,25 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                             <Text style={styles.subTitle}>Language</Text>
                             {
                                 Platform.OS === 'ios' ?
-                                    <RNPickerSelect
-                                        onValueChange={(itemValue, itemIndex)  =>
-                                            setLanguage(itemValue)}
-                                        items={[
-                                            { label: 'English', value: 'english' },
-                                            { label: 'Russian', value: 'russian' },
-                                        ]}
-                                        style={styles.picker}
+                                    <View style={{paddingVertical: 10, paddingHorizontal: 10}}>
+                                        <RNPickerSelect
+                                            placeholder={{
+                                                label: "Select language",
+                                                value: null,
+                                            }}
+                                            onValueChange={(value, itemIndex)  =>
+                                                setLanguage(value)
+                                            }
+                                            items={[
+                                                { label: 'English', value: 'english', key: 1, color: "#000" },
+                                                { label: 'Russian', value: 'russian', key: 2, color: "#000" },
+                                            ]}
+                                            textInputProps={{
+                                                color: "#fff",
+                                            }}
+                                        />
+                                    </View>
 
-                                    />
                                     : <Picker
                                             selectedValue={language}
                                             style={styles.picker}
@@ -213,5 +222,15 @@ const styles = StyleSheet.create({
         width: "90%",
         alignSelf: "center",
         marginTop: 20
-    }
+    },
+    inputIOS: {
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        color: 'green',
+        paddingRight: 30, // to ensure the text is never behind the icon
+    },
 });
