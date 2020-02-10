@@ -31,8 +31,8 @@ export const TopSettingsBar: React.FC<any> = () => {
     };
 
     const locationItem = ({item, index} ) => (
-        <View style={{flexDirection: "row", width: item.toggleIn ? 800 : 350}}>
-            <View style={[styles.column, { borderBottomWidth: 0.5, borderColor: "#fff"}]}>
+        <View style={{flexDirection: "row", width: item.toggleIn ? 800 : 400}}>
+            <View style={[styles.column, { borderBottomWidth: 0.5, borderTopWidth: 0.5, borderColor: "#fff", paddingVertical: 1}]}>
                 <TouchableOpacity
                     style={{
                         flexDirection: "row",
@@ -193,7 +193,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                 <View style={[styles.column, {flex: 2}]}>
                     <View style={{width: 250}}>
                         <Text style={{color: "#fff", paddingBottom: 5, fontWeight: "bold"}}>Filter by geography</Text>
-                        <Text style={{color: '#fff', fontSize: 12, borderBottomWidth: 0.5, borderColor: "#fff", paddingBottom: 5}}>
+                        <Text style={{color: '#fff', fontSize: 12}}>
                             Searching in all regions by default.
                             Select region - and optionally country - to limit
                             search to your selection.

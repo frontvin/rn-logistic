@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Dimensions, Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import { Dimensions, Picker, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Icon } from "react-native-elements";
 import { Divider } from 'react-native-elements';
 import { RadioButton, Switch } from 'react-native-paper';
@@ -75,7 +75,7 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                     />
                                     : <Picker
                                             selectedValue={language}
-                                            itemStyle={styles.picker}
+                                            style={styles.picker}
                                             mode={"dropdown"}
                                             onValueChange={(itemValue, itemIndex) =>
                                                 setLanguage(itemValue)
