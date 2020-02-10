@@ -107,11 +107,14 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                         onValueChange={() => {
                                             setCacheSwitchOn(!cacheSwitchOn)
                                         }}
+                                        style={{
+                                            transform: Platform.OS === 'ios' ? [{ scaleX: .7 }, { scaleY: .7 }] : [{ scaleX: 0.9 }, { scaleY: 0.9 }],
+                                        }}
                                         color={"#56B7E9"}
                                     >
 
                                     </Switch>
-                                    <Text style={{color: "#fff"}}>
+                                    <Text style={{color: "#fff", paddingLeft: 10}}>
                                         {cacheSwitchOn ? "enabled" : "disabled"}
                                     </Text>
                                 </View>
@@ -135,9 +138,12 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                         onValueChange={() => {
                                             setFilterOn(!filterOn)
                                         }}
+                                        style={{
+                                            transform: Platform.OS === 'ios' ? [{ scaleX: .7 }, { scaleY: .7 }] : [{ scaleX: 0.9 }, { scaleY: 0.9 }],
+                                        }}
                                         color={"#56B7E9"}
                                     />
-                                    <Text style={{color: "#fff"}}>
+                                    <Text style={{color: "#fff", paddingLeft: 10}}>
                                         { filterOn ? "enabled" : "disabled" }
                                     </Text>
                                 </View>

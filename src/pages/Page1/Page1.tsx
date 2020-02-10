@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, Platform, Touc
 import { Search } from "../../components/Search";
 import { Divider } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { TopSettingsBar } from "../../components/TopSettingsBar";
+import { TopSettingsBar2 } from "../../components/TopSettingsBar2";
 
 export const Page1: React.FC<any> = ( { navigation }) => {
     const [isNewSearch, setIsNewSearch] = useState(false);
@@ -46,7 +46,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
 
                 <View>
                     {
-                        settingsOn ? <TopSettingsBar /> : null
+                        settingsOn ? <TopSettingsBar2 /> : null
                     }
                     <ScrollView>
                         <View style={styles.container}>
