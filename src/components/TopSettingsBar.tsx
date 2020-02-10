@@ -31,7 +31,7 @@ export const TopSettingsBar: React.FC<any> = () => {
     };
 
     const locationItem = ({item, index} ) => (
-        <View style={{flexDirection: "row", width: item.toggleIn ? 800 : 400}}>
+        <View style={{flexDirection: "row", width: item.toggleIn ? "60%" : "30%"}}>
             <View style={[styles.column, { borderBottomWidth: 0.5, borderTopWidth: 0.5, borderColor: "#fff", paddingVertical: 1}]}>
                 <TouchableOpacity
                     style={{
@@ -152,6 +152,7 @@ export const TopSettingsBar: React.FC<any> = () => {
                     setSwitchValue(value, index)
                 }}
                 color={"#56B7E9"}
+                style={{transform: [{ scaleX: .7 }, { scaleY: .7 }], borderWidth: 1, borderRadius: 15, borderColor: "#fff"}}
             />
             <Text style={{color: "#fff", fontSize: 16, paddingLeft: 10}}>{item.name}</Text>
         </View>
@@ -160,10 +161,10 @@ export const TopSettingsBar: React.FC<any> = () => {
     // buttons
     const [isBtnEnabled, setIsBtnEnabled] = useState(
         [
-            {iconName: "plane", isEnabled: true},
-            {iconName: "ship", isEnabled: true},
-            {iconName: "truck", isEnabled: true},
-            {iconName: "train", isEnabled: true}
+            {iconName: "plane", isEnabled: true, style: {borderWidth: 1, borderTopLeftRadius: 5, borderBottomLeftRadius: 5}},
+            {iconName: "ship", isEnabled: true, style: {borderLeftWidth: 0.5, borderRightWidth: 0.5, borderTopWidth: 1, borderBottomWidth: 1}},
+            {iconName: "truck", isEnabled: true, style: {borderLeftWidth: 0.5, borderRightWidth: 0.5, borderTopWidth: 1, borderBottomWidth: 1}},
+            {iconName: "train", isEnabled: true, style: {borderTopRightRadius: 5, borderBottomRightRadius: 5, borderWidth: 1}}
         ]
     );
 
@@ -177,11 +178,15 @@ export const TopSettingsBar: React.FC<any> = () => {
 
     const transportItem = ({item, index}) => (
         <TouchableOpacity
-            style={{
-                borderWidth: 1,
-                backgroundColor: 'transparent',
-                borderColor: item.isEnabled ? "#fff" : "grey"
-            }}
+            style={
+                [
+                    item.style,
+                    {
+                        backgroundColor: 'transparent',
+                        borderColor: item.isEnabled ? "#fff" : "grey",
+                    }
+                ]
+            }
             onPress={(item) => setButtonState(item, index)}
         >
             <Icon
