@@ -1,11 +1,18 @@
 import React, {useState} from "react";
-import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
-import {Icon} from "react-native-elements";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Icon } from "react-native-elements";
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
 
 export const Search: React.FC<any> = ({ toggleSettings }) => {
     const [search, setSearch] = useState("");
+    const [iconPressed, seIconPressed] = useState(false);
+
+    const settingsToggle = () => {
+        toggleSettings();
+        seIconPressed(!iconPressed);
+    }
+
     const items = [
         {
             id: 1,
@@ -70,12 +77,12 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
                     }
                 }
             />
-            <TouchableOpacity onPress={toggleSettings}>
+            <TouchableOpacity onPress={settingsToggle}>
                 <View style={{width: 50, height: 50, backgroundColor: "#203E66", justifyContent: "center", alignItems: "center"}}>
                     <Icon
                         name={'settings'}
                         size={35}
-                        color={"#fff"}
+                        color={iconPressed ? "#fff" : "#56B7E9"}
                     />
                 </View>
             </TouchableOpacity>
