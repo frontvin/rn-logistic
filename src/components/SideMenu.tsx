@@ -109,6 +109,9 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                         }}
                                         style={{
                                             transform: Platform.OS === 'ios' ? [{ scaleX: .7 }, { scaleY: .7 }] : [{ scaleX: 0.9 }, { scaleY: 0.9 }],
+                                            borderWidth: 1,
+                                            borderRadius: 15,
+                                            borderColor: "#fff"
                                         }}
                                         color={"#56B7E9"}
                                     >
@@ -140,6 +143,9 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
                                         }}
                                         style={{
                                             transform: Platform.OS === 'ios' ? [{ scaleX: .7 }, { scaleY: .7 }] : [{ scaleX: 0.9 }, { scaleY: 0.9 }],
+                                            borderWidth: 1,
+                                            borderRadius: 15,
+                                            borderColor: "#fff"
                                         }}
                                         color={"#56B7E9"}
                                     />
@@ -170,7 +176,7 @@ export const SideMenu: React.FC<any> = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#0E1C30",
+        backgroundColor: "#021228",
         paddingTop: Platform.OS === 'android' ? 25 : 0
     },
     sideMenuContainer: {
@@ -181,7 +187,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: 10
+        paddingHorizontal: 10,
+        paddingVertical: 6
     },
     headerTitle: {
         fontSize: 22,

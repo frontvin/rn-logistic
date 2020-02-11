@@ -5,7 +5,7 @@ import {Switch} from "react-native-paper";
 import RNPickerSelect from "react-native-picker-select";
 
 
-export const TopSettingsBar2: React.FC<any> = () => {
+export const TopSettingsBar2: React.FC<any> = ({closeSettings}) => {
 
     const transport = [
         {iconName: "plane", isEnabled: true, style: {borderWidth: 1, borderTopLeftRadius: 5, borderBottomLeftRadius: 5}},
@@ -121,40 +121,38 @@ export const TopSettingsBar2: React.FC<any> = () => {
 
     const countries = [
         [
-            { label: 'Iran', value: 'Iran', key: 1 },
-            { label: 'Turkey', value: 'Turkey', key: 2 },
+            { label: 'Nigeria', value: 'Iran', key: 1 },
+            { label: 'Ethiopia', value: 'Turkey', key: 2 },
             { label: 'Egypt', value: 'Egypt', key: 3 },
-            { label: 'Israel', value: 'Israel', key: 4 },
+            { label: 'South Africa', value: 'Israel', key: 4 },
         ],
         [
-            { label: '1', value: 'Iran', key: 1 },
-            { label: '2', value: 'Turkey', key: 2 },
-            { label: '3', value: 'Egypt', key: 3 },
-            { label: '4', value: 'Israel', key: 4 },
+            { label: 'China', value: 'Iran', key: 1 },
+            { label: 'Japan', value: 'Turkey', key: 2 },
+            { label: 'Mongolia', value: 'Egypt', key: 3 },
+            { label: 'South Korea', value: 'Israel', key: 4 },
         ],
         [
-            { label: '5', value: 'Iran', key: 1 },
-            { label: '6', value: 'Turkey', key: 2 },
-            { label: '7', value: 'Egypt', key: 3 },
-            { label: '8', value: 'Israel', key: 4 },
-        ],
-        [
-            { label: 'Iran', value: 'Iran', key: 1 },
-            { label: 'Turkey', value: 'Turkey', key: 2 },
-            { label: 'Egypt', value: 'Egypt', key: 3 },
-            { label: 'Israel', value: 'Israel', key: 4 },
+            { label: 'Germany', value: 'Iran', key: 1 },
+            { label: 'France', value: 'Turkey', key: 2 },
+            { label: 'Denmark', value: 'Egypt', key: 3 },
+            { label: 'Poland', value: 'Israel', key: 4 },
         ],
         [
             { label: 'Iran', value: 'Iran', key: 1 },
-            { label: 'Turkey', value: 'Turkey', key: 2 },
-            { label: 'Egypt', value: 'Egypt', key: 3 },
-            { label: 'Israel', value: 'Israel', key: 4 },
+            { label: 'Iraq', value: 'Turkey', key: 2 },
+            { label: 'Kuwait', value: 'Egypt', key: 3 },
+            { label: 'Oman', value: 'Israel', key: 4 },
         ],
         [
-            { label: 'Iran', value: 'Iran', key: 1 },
-            { label: 'Turkey', value: 'Turkey', key: 2 },
-            { label: 'Egypt', value: 'Egypt', key: 3 },
-            { label: 'Israel', value: 'Israel', key: 4 },
+            { label: 'United States', value: 'Iran', key: 1 },
+            { label: 'Canada', value: 'Turkey', key: 2 },
+        ],
+        [
+            { label: 'Argentina', value: 'Iran', key: 1 },
+            { label: 'Bolivia', value: 'Turkey', key: 2 },
+            { label: 'Brazil', value: 'Egypt', key: 3 },
+            { label: 'Colombia', value: 'Israel', key: 4 },
         ]
     ];
 
@@ -272,7 +270,7 @@ export const TopSettingsBar2: React.FC<any> = () => {
     return (
         <View style={styles.settingsBarContainer}>
             <View style={{flexDirection: 'row', justifyContent: "flex-end", padding: 10}}>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity onPress={closeSettings}>
                     <Icon name={"close"} size={25} color={"#fff"}></Icon>
                 </TouchableOpacity>
             </View>

@@ -7,8 +7,7 @@ import {Paragraph, List, Title, Avatar} from "react-native-paper";
 import {Constants} from "expo/build/globals.web";
 import { SliderBox } from 'react-native-image-slider-box';
 import MapComponent from "../../components/Geolocation";
-import {Header} from "../../components/Header";
-import {TopSettingsBar} from "../../components/TopSettingsBar";
+import {TopSettingsBar2} from "../../components/TopSettingsBar2";
 
 export const Page2: React.FC<any> = ({navigation, geolocation}) => {
   const images = [
@@ -58,7 +57,7 @@ export const Page2: React.FC<any> = ({navigation, geolocation}) => {
 
           <View>
               {
-                  settingsOn ? <TopSettingsBar /> : null
+                  settingsOn ? <TopSettingsBar2 /> : null
               }
 
               <ScrollView style={{flex: 1, paddingBottom: Dimensions.get('window').height - Constants.statusBarHeight-80}}>

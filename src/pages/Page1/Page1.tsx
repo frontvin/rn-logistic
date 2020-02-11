@@ -12,6 +12,10 @@ export const Page1: React.FC<any> = ( { navigation }) => {
     const toggleSettings = () => {
         setSettingOn(!settingsOn)
     };
+
+    const closeSettings = () => {
+      setSettingOn(false);
+    };
         return (
             <View style={styles.pageWrapper}>
                 <SafeAreaView>
@@ -23,7 +27,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
                                 </View>
                             </TouchableOpacity>
 
-                            <Search toggleSettings={toggleSettings} color={'#fff'}/>
+                            <Search toggleSettings={toggleSettings}  color={'#fff'}/>
 
                             <TouchableOpacity onPress={ () => setIsNewSearch(!isNewSearch) }>
                                 <View style={{width: 50, height: 50, backgroundColor: "#56B7E9", justifyContent: "center", alignItems: "center"}}>
@@ -38,7 +42,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
 
                             {
                                 isNewSearch
-                                    ? <Search toggleSettings={toggleSettings}/>
+                                    ? <Search toggleSettings={toggleSettings} color={settingsOn}/>
                                     : null}
                         </View>
                     </View>
@@ -46,7 +50,7 @@ export const Page1: React.FC<any> = ( { navigation }) => {
 
                 <View>
                     {
-                        settingsOn ? <TopSettingsBar2 /> : null
+                        settingsOn ? <TopSettingsBar2 closeSettings={closeSettings} /> : null
                     }
                     <ScrollView>
                         <View style={styles.container}>

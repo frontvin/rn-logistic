@@ -4,7 +4,7 @@ import {Icon} from "react-native-elements";
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
 
-export const Search: React.FC<any> = ({ toggleSettings}) => {
+export const Search: React.FC<any> = ({ toggleSettings }) => {
     const [search, setSearch] = useState("");
     const items = [
         {
@@ -30,7 +30,7 @@ export const Search: React.FC<any> = ({ toggleSettings}) => {
 
         <View style={{flexDirection: "row", flex: 1, borderBottomColor: "#fff", borderBottomWidth: 1}}>
             <View style={{width: 50, height: 50, backgroundColor: "#203E66", justifyContent: "center", alignItems: "center"}}>
-                <Icon name={'search'} size={35} color={'#fff'}></Icon>
+                <Icon name={'search'} size={35} color={"#fff"}></Icon>
             </View>
 
             <SearchableDropdown
@@ -41,15 +41,11 @@ export const Search: React.FC<any> = ({ toggleSettings}) => {
                 }}
                 containerStyle={{ padding: 5, flex: 1 }}
                 onRemoveItem={(item, index) => {
-                    const items = selectedItems.filter((sitem) => sitem.id !== item.id);
+                    const items = selectedItems.filter((item) => item.id !== item.id);
                     setSelectedItems({ ...items });
                 }}
                 itemStyle={{
-                    width: "100%",
                     padding: 10,
-                    marginTop: 2,
-                    backgroundColor: '#ddd',
-                    borderColor: '#bbb',
                     borderWidth: 1,
                     borderRadius: 5,
                 }}
@@ -64,8 +60,8 @@ export const Search: React.FC<any> = ({ toggleSettings}) => {
                         underlineColorAndroid: "transparent",
                         style: {
                             padding: 12,
+                            color: "#fff",
                         },
-                        onTextChange: text => alert(text)
                     }
                 }
                 listProps={
@@ -79,7 +75,7 @@ export const Search: React.FC<any> = ({ toggleSettings}) => {
                     <Icon
                         name={'settings'}
                         size={35}
-                        color={'#fff'}
+                        color={"#fff"}
                     />
                 </View>
             </TouchableOpacity>
