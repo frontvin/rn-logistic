@@ -51,7 +51,6 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
                     style={styles.searchInput}
                     placeholder="Find KN Facility (office, station, warehouse, etc.)"
                     placeholderTextColor={"#6F839C"}
-                    clearButtonMode="always"
                     onFocus={() => setVisibleSearch(!isVisibleSearch)}
                     onEndEditing={() => setVisibleSearch(!isVisibleSearch)}
                     // value={address.name}
