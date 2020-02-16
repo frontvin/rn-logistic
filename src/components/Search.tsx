@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {ScrollView, StyleSheet, TouchableOpacity, View, Text} from "react-native";
 import { Icon } from "react-native-elements";
-import SearchableDropdown from 'react-native-searchable-dropdown';
 import SearchInput, { createFilter } from 'react-native-search-filter';
 
 export const Search: React.FC<any> = ({ toggleSettings }) => {
@@ -21,8 +20,8 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
         setSelectedItems( term )
     };
 
-    const KEYS_TO_FILTERS = ['address'];
-    const filteredEmails = items.filter(createFilter(selectedItems, KEYS_TO_FILTERS));
+    const KEYS_TO_FILTERS = ['name'];
+    const filteredAddressees = items.filter(createFilter(selectedItems, KEYS_TO_FILTERS));
 
     return (
         <View
@@ -53,7 +52,6 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
                     placeholderTextColor={"#6F839C"}
                     onFocus={() => setVisibleSearch(!isVisibleSearch)}
                     onEndEditing={() => setVisibleSearch(!isVisibleSearch)}
-                    // value={address.name}
                 />
                 <ScrollView
                     style={{
@@ -61,7 +59,7 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
                         backgroundColor: '#385377'
                     }}
                 >
-                    {filteredEmails.map(address => {
+                    {filteredAddressees.map(address => {
                         return (
                             <TouchableOpacity onPress={()=>alert(address.name)} key={address.id} style={styles.emailItem}>
                                 <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
@@ -73,45 +71,6 @@ export const Search: React.FC<any> = ({ toggleSettings }) => {
                     })}
                 </ScrollView>
             </View>
-
-            {/*<SearchableDropdown*/}
-            {/*    onItemSelect={(item) => {*/}
-            {/*        const items = selectedItems;*/}
-            {/*        items.push(item);*/}
-            {/*        setSelectedItems({ ...items });*/}
-            {/*    }}*/}
-            {/*    containerStyle={{*/}
-            {/*        color: "#fff",*/}
-            {/*        padding: 0,*/}
-            {/*        flex: 1,*/}
-            {/*    }}*/}
-            {/*    onRemoveItem={(item, index) => {*/}
-            {/*        const items = selectedItems.filter((item) => item.id !== item.id);*/}
-            {/*        setSelectedItems({ ...items });*/}
-            {/*    }}*/}
-            {/*    itemStyle={{*/}
-            {/*        padding: 10,*/}
-            {/*    }}*/}
-            {/*    itemTextStyle={{ color: '#fff', borderBottomWidth: 1, borderBottomColor: "#fff" }}*/}
-            {/*    itemsContainerStyle={{ height: 140,}}*/}
-            {/*    items={items}*/}
-            {/*    resetValue={true}*/}
-            {/*    textInputProps={{*/}
-            {/*        color: "#fff",*/}
-            {/*        placeholder: "Find KN Facility (office, station, warehouse, etc.)",*/}
-            {/*        backgroundColor: "#203E66",*/}
-            {/*        style: {*/}
-            {/*            padding: 15,*/}
-            {/*            fontSize: 16,*/}
-            {/*            borderBottomColor: "#000",*/}
-            {/*            color: "#fff",*/}
-            {/*        },*/}
-            {/*    }}*/}
-            {/*    placeholderTextColor={"#6F839C"}*/}
-            {/*    listProps={{*/}
-            {/*        nestedScrollEnabled: true,*/}
-            {/*    }}*/}
-            {/*/>*/}
 
             <TouchableOpacity onPress={toggleSettings}>
                 <View
